@@ -32,7 +32,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
 //import frc.robot.subsystems.Turret;
 import frc.libs.*;
-import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -72,7 +72,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   private UsbCamera camera;
 
   public RobotContainer() {
-    camera = CameraServer.getInstance().startAutomaticCapture();
+    camera = CameraServer.startAutomaticCapture();
     camera.setFPS(30);
     camera.setResolution(320, 240);
 
