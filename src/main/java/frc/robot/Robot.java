@@ -17,7 +17,7 @@ public class Robot extends TimedRobot {
   private RobotContainer robotContainer;
   private DifferentialDrive m_myRobot;
   private Joystick m_leftStick;
-  private Joystick m_rightStick;
+  // private Joystick m_rightStick;
 
   private final MotorController rightMotor1 = new CANSparkMax(6, MotorType.kBrushless);
   private final MotorController rightMotor2 = new CANSparkMax(5, MotorType.kBrushless);

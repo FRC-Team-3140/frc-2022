@@ -6,7 +6,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
 import frc.robot.Constants;
@@ -18,10 +18,10 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
   public Drivetrain() {
     setupMotors();
 
-    leftEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
-    rightEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
-    leftEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
-    rightEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
+    // leftEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
+    // rightEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
+    // leftEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
+    // rightEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
 
     resetEncoders();
     resetGyro();
@@ -41,7 +41,6 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    // TODO:
     // Comment these lines out and then stop multiplying constants by 10????
     leftVolts = leftVolts/12;
     rightVolts = rightVolts/12;
@@ -69,16 +68,16 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
    ************/
   @Override
   public void periodic() {
-    if(isTrajectoryReversed())
-      odometry.update(Rotation2d.fromDegrees(getHeading()), getRightEncoderDistance(), getLeftEncoderDistance());
-    else
-      odometry.update(Rotation2d.fromDegrees(getHeading()), getLeftEncoderDistance(), getRightEncoderDistance());
-    SmartDashboard.putNumber("Gyro Heading (deg): ", getHeading());
-    SmartDashboard.putNumber("Left Encoder Distance (m): ", getLeftEncoderDistance());
-    SmartDashboard.putNumber("Right Encoder Distance (m): ", getRightEncoderDistance());
-    SmartDashboard.putNumber("Left Encoder Velocity (m/s): ", getLeftEncoderVelocity());
-    SmartDashboard.putNumber("Right Encoder Velocity (m/s): ", getRightEncoderVelocity());
-    SmartDashboard.putNumber("Average Velocity (m/s): ", (getLeftEncoderVelocity() + getRightEncoderVelocity()) / 2);
+    // if(isTrajectoryReversed())
+    //   odometry.update(Rotation2d.fromDegrees(getHeading()), getRightEncoderDistance(), getLeftEncoderDistance());
+    // else
+    //   odometry.update(Rotation2d.fromDegrees(getHeading()), getLeftEncoderDistance(), getRightEncoderDistance());
+    // SmartDashboard.putNumber("Gyro Heading (deg): ", getHeading());
+    // SmartDashboard.putNumber("Left Encoder Distance (m): ", getLeftEncoderDistance());
+    // SmartDashboard.putNumber("Right Encoder Distance (m): ", getRightEncoderDistance());
+    // SmartDashboard.putNumber("Left Encoder Velocity (m/s): ", getLeftEncoderVelocity());
+    // SmartDashboard.putNumber("Right Encoder Velocity (m/s): ", getRightEncoderVelocity());
+    // SmartDashboard.putNumber("Average Velocity (m/s): ", (getLeftEncoderVelocity() + getRightEncoderVelocity()) / 2);
   }
 
   /******************
@@ -125,8 +124,8 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
    **********/
 
   public void resetEncoders() {
-    leftEncoder.setPosition(0);
-    rightEncoder.setPosition(0);
+    // leftEncoder.setPosition(0);
+    // rightEncoder.setPosition(0);
   }
 
   public void resetGyro() {

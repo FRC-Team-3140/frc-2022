@@ -69,7 +69,6 @@ public class AutoGenerator implements Constants.ControllerConstants.General, Con
                 .andThen(makeFollowingCommandForAuto("ShootingLocation_to_CollectBallsFromControlPanel.wpilib.json"))
                 .andThen(() -> RobotContainer.dt.setTrajectoryReversed(true))
                 .andThen(makeFollowingCommandForAuto("replacentTest.wpilib.json"));
-        // TODO:
         // Brake Mode On
         // TrajectoryFollowing Drive to Shooting Location
         // In Parallel Home and Rotate Shooter to 90deg.

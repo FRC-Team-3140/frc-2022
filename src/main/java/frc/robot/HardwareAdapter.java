@@ -12,11 +12,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
 
 public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     // Other CAN
-    public static final PowerDistributionPanel pdp = new PowerDistributionPanel(PDP);
+    public static final PowerDistribution pdp = new PowerDistribution();
     // Drivetrain
     public static final CANSparkMax leftDriveMaster = new CANSparkMax(LEFT_DRIVE_MASTER, MotorType.kBrushless);
     public static final CANSparkMax rightDriveMaster = new CANSparkMax(RIGHT_DRIVE_MASTER, MotorType.kBrushless);
@@ -41,19 +43,19 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public static final WPI_VictorSPX climberSlave = new WPI_VictorSPX(CLIMBER_SLAVE);
 
     // Shooter Rotary Components
-    public static final WPI_TalonSRX hoodMotor = new WPI_TalonSRX(HOOD_MOTOR);
+    public static final TalonSRX hoodMotor = new TalonSRX(HOOD_MOTOR);
    // public static final WPI_TalonSRX turretMotor = new WPI_TalonSRX(TURRET_MOTOR);
 
     // Pnuematics
-    public static final Compressor compressor = new Compressor(PCM);
-    public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PCM, INTAKE_SOLENOID_EXT,
+    public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, INTAKE_SOLENOID_EXT,
             INTAKE_SOLENOID_RET);
-    public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PCM, CLIMBER_LOCK_SOLENOID_EXT,
+    public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, CLIMBER_LOCK_SOLENOID_EXT,
             CLIMBER_LOCK_SOLENOID_RET);
 
     // Encoders
-    public static final CANEncoder leftEncoder = new CANEncoder(leftDriveMaster);
-    public static final CANEncoder rightEncoder = new CANEncoder(rightDriveMaster);
+    public static final RelativeEncoder leftEncoder =  leftDriveMaster.getEncoder();
+    public static final RelativeEncoder rightEncoder =  rightDriveMaster.getEncoder();
 
     // Gyro
     public static final AHRS navx = new AHRS(SPI.Port.kMXP);
