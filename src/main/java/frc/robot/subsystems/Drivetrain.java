@@ -69,10 +69,10 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
    ************/
   @Override
   public void periodic() {
-    // if(isTrajectoryReversed())
-    //   odometry.update(Rotation2d.fromDegrees(getHeading()), getRightEncoderDistance(), getLeftEncoderDistance());
-    // else
-    //   odometry.update(Rotation2d.fromDegrees(getHeading()), getLeftEncoderDistance(), getRightEncoderDistance());
+    if(isTrajectoryReversed())
+      odometry.update(Rotation2d.fromDegrees(getHeading()), getRightEncoderDistance(), getLeftEncoderDistance());
+    else
+      odometry.update(Rotation2d.fromDegrees(getHeading()), getLeftEncoderDistance(), getRightEncoderDistance());
     SmartDashboard.putNumber("Gyro Heading (deg): ", getHeading());
     SmartDashboard.putNumber("Left Encoder Distance (m): ", getLeftEncoderDistance());
     SmartDashboard.putNumber("Right Encoder Distance (m): ", getRightEncoderDistance());
