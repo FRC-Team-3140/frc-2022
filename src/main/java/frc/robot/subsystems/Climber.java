@@ -14,25 +14,20 @@ import frc.robot.HardwareAdapter;
 
 public class Climber extends SubsystemBase implements HardwareAdapter {
   public Climber() {
-    setFollowers();
-    climberMaster.setNeutralMode(NeutralMode.Brake);
-    climberSlave.setNeutralMode(NeutralMode.Brake);
+    climberMotor1.setNeutralMode(NeutralMode.Brake);
+    climberMotor2.setNeutralMode(NeutralMode.Brake);
   }
 
   public void climberExtend() {
-    climberMaster.set(1);
+    climberMotors.set(1);
   }
 
   public void climberRetract() {
-    climberMaster.set(-1);
+    climberMotors.set(-1);
   }
 
   public void climberOff() {
-    climberMaster.set(0);
-  }
-
-  private void setFollowers() {
-    climberSlave.follow(climberMaster);
+    climberMotors.set(0);
   }
 
   @Override

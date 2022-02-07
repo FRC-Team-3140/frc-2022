@@ -62,7 +62,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   // .json file is loaded on robot init as well. This saves time during auto as .json file
   // loading can take some time, and this time would normally be wasted with the robot just 
   // sitting still during auto.
-  public static final AutoGenerator ag = new AutoGenerator();
+  // public static final AutoGenerator ag = new AutoGenerator();
   private static final SendableChooser<Command> chooser = new SendableChooser<>();
 
   // Xbox controllers
@@ -78,7 +78,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
    // chooser.setName("Please Select and Auto"); // (this works; find alternatives)
     chooser.setDefaultOption("Timed Drive", new TimedDrive(0.5, 1));
-    chooser.addOption("Do Nothing", ag.getDoNothingAuto());
+    // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
     /*
     chooser.addOption("Drive Straight", ag.getDriveStraightAuto());

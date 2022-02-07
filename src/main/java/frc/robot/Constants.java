@@ -29,7 +29,7 @@ public interface Constants {
 
 		// Use meters, seconds, degrees (180deg to -180deg), and volts for all motion profiling based units.
 		public interface RobotPhysicalConstants {
-			// Robot dimensions
+			// Robot dimensions  (these will need to be updated to the 2022 counts)
 			public static final double robotLengthIntakeInWithBumpers = 0.953;
 			public static final double robotLengthIntakeOutWithBumpers = 1.1;
 			public static final double robotWidthWithBumpers = 0.889;
@@ -37,13 +37,13 @@ public interface Constants {
 						
 			// Camera offsets
 
-			// Gear Ratio's
+			// Gear Ratio's  (these will need to be updated to the 2022 counts)
 			public static final double driveTrainGearRatio = 7.88;
 			public static final double flyWheelGearRatio = 0.7159;
 			public static final double turretGearRatio = 11.1;
 			public static final double hoodDegreesPerRotation = 0;
 
-			// Diameters
+			// Diameters  (these will need to be updated to the 2022 counts)
 			public static final double wheelDiameterMeters = 0.1524;
 			public static final double flyWheelDiameterMeters = 0.1016;
 		}
@@ -86,31 +86,31 @@ public interface Constants {
 		public final static int PCM = 1;
 
 		// Drivetrain
-		public final static int LEFT_DRIVE_MASTER = 3;
-		public final static int RIGHT_DRIVE_MASTER = 2;
-		public final static int LEFT_DRIVE_SLAVE1 = 4;
-		public final static int RIGHT_DRIVE_SLAVE1 = 5;
-		public final static int LEFT_DRIVE_SLAVE2 = 6;
-		public final static int RIGHT_DRIVE_SLAVE2 = 7;
+		public final static int rightMotor1 = 6;
+		public final static int rightMotor2 = 5;
+		public final static int rightMotor3 = 4;
+		public final static int leftMotor1 = 1;
+		public final static int leftMotor2 = 2;
+		public final static int leftMotor3 = 3;
 
 		// Intake
-		public final static int INTAKE_MOTOR = 8;
+		public final static int intakeMotor = 8;
 
 		// Shooter
-		public final static int FLYWHEEL_MASTER = 9;
-		public final static int FLYWHEEL_SLAVE = 10;
+		public final static int flyWheelMotor1 = 9;
+		public final static int flyWheelMotor2 = 10;
 
 		// Feeders
-		public final static int BALL_FEEDER = 11;
-		public final static int SHOOTER_FEEDER = 12;
+		public final static int ballFeeder = 11;
+		public final static int shooterFeeder = 12;
 
 		// Climber
-		public final static int CLIMBER_MASTER = 13;
-		public final static int CLIMBER_SLAVE = 14;
+		public final static int climberMotor1 = 13;
+		public final static int climberMotor2 = 14;
 
 		// Shooter Rotary Components
-		public final static int HOOD_MOTOR = 15;
-	//	public final static int TURRET_MOTOR = 16;
+		public final static int hoodMotor = 15;
+		public final static int turretMotor = 16;
 
 		// Limit Switches
 		public final static int HOOD_LIMIT = 0;

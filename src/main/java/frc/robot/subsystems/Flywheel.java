@@ -12,20 +12,15 @@ import frc.robot.HardwareAdapter;
 
 public class Flywheel extends SubsystemBase implements HardwareAdapter {
   public Flywheel() {
-    flyWheelMaster.setInverted(true);
-    setFollowers();
-  }
-
-  private void setFollowers() {
-    flyWheelSlave1.follow(flyWheelMaster, true);
+    flyWheelMotors.setInverted(true);
   }
    
   public void shootOut() {
-    flyWheelMaster.set(1);
+    flyWheelMotors.set(1);
   }
 
   public void shootOff() {
-    flyWheelMaster.set(0);
+    flyWheelMotors.set(0);
   }
 
   @Override

@@ -27,15 +27,15 @@ public class HoldPositionController extends CommandBase implements Constants.Con
         leftPID.reset();
         rightPID.reset();
 
-        previousIdleMode = RobotContainer.dt.getIdleMode();
+        // previousIdleMode = RobotContainer.dt.getIdleMode();
         RobotContainer.dt.setIdleMode(IdleMode.kBrake);
     }
 
     @Override
     public void execute() {
-        double left = leftPID.calculate(RobotContainer.dt.getLeftEncoderDistance(), 0.0);
-        double right = rightPID.calculate(RobotContainer.dt.getRightEncoderDistance(), 0.0);
-        RobotContainer.dt.tankDrive(left / 12, right / 12);
+        // double left = leftPID.calculate(RobotContainer.dt.getLeftEncoderDistance(), 0.0);
+        // double right = rightPID.calculate(RobotContainer.dt.getRightEncoderDistance(), 0.0);
+        // RobotContainer.dt.tankDrive(left / 12, right / 12);
     }
  
     @Override

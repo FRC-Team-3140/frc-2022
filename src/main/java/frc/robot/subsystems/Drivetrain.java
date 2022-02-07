@@ -1,12 +1,13 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
 import frc.robot.Constants;
@@ -18,10 +19,10 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
   public Drivetrain() {
     setupMotors();
 
-    // leftEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
-    // rightEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
-    // leftEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
-    // rightEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
+    leftEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
+    rightEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
+    leftEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
+    rightEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
 
     resetEncoders();
     resetGyro();
@@ -36,8 +37,8 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
   }
 
   public void tankDrive(double left, double right) {
-    leftDriveMaster.set(left);
-    rightDriveMaster.set(right);
+    leftSideMotors.set(left);
+    rightSideMotors.set(right);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -54,12 +55,12 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
       rightVolts = Math.signum(rightVolts) * 12;    
 
     if(reversedTrajectory) {
-      leftDriveMaster.setVoltage(-rightVolts);
-      rightDriveMaster.setVoltage(-leftVolts);
+      leftSideMotors.setVoltage(-rightVolts);
+      rightSideMotors.setVoltage(-leftVolts);
     }
     else {
-      leftDriveMaster.setVoltage(leftVolts);
-      rightDriveMaster.setVoltage(rightVolts);
+      leftSideMotors.setVoltage(leftVolts);
+      rightSideMotors.setVoltage(rightVolts);
     }
   }
 
@@ -72,12 +73,12 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
     //   odometry.update(Rotation2d.fromDegrees(getHeading()), getRightEncoderDistance(), getLeftEncoderDistance());
     // else
     //   odometry.update(Rotation2d.fromDegrees(getHeading()), getLeftEncoderDistance(), getRightEncoderDistance());
-    // SmartDashboard.putNumber("Gyro Heading (deg): ", getHeading());
-    // SmartDashboard.putNumber("Left Encoder Distance (m): ", getLeftEncoderDistance());
-    // SmartDashboard.putNumber("Right Encoder Distance (m): ", getRightEncoderDistance());
-    // SmartDashboard.putNumber("Left Encoder Velocity (m/s): ", getLeftEncoderVelocity());
-    // SmartDashboard.putNumber("Right Encoder Velocity (m/s): ", getRightEncoderVelocity());
-    // SmartDashboard.putNumber("Average Velocity (m/s): ", (getLeftEncoderVelocity() + getRightEncoderVelocity()) / 2);
+    SmartDashboard.putNumber("Gyro Heading (deg): ", getHeading());
+    SmartDashboard.putNumber("Left Encoder Distance (m): ", getLeftEncoderDistance());
+    SmartDashboard.putNumber("Right Encoder Distance (m): ", getRightEncoderDistance());
+    SmartDashboard.putNumber("Left Encoder Velocity (m/s): ", getLeftEncoderVelocity());
+    SmartDashboard.putNumber("Right Encoder Velocity (m/s): ", getRightEncoderVelocity());
+    SmartDashboard.putNumber("Average Velocity (m/s): ", (getLeftEncoderVelocity() + getRightEncoderVelocity()) / 2);
   }
 
   /******************
@@ -94,29 +95,24 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
     boolean leftInverted = true;
     boolean rightInverted = false;
 
-    leftDriveMaster.setInverted(leftInverted);
-    leftDriveSlave1.follow(leftDriveMaster);
-    leftDriveSlave1.setInverted(leftInverted);
-    leftDriveSlave2.follow(leftDriveMaster);
-    leftDriveSlave2.setInverted(leftInverted);
+    leftSideMotors.setInverted(leftInverted);
 
-    rightDriveMaster.setInverted(rightInverted);
-    rightDriveSlave1.follow(rightDriveMaster);
-    rightDriveSlave1.setInverted(rightInverted);
-    rightDriveSlave2.follow(rightDriveMaster);
-    rightDriveSlave2.setInverted(rightInverted);
+    rightSideMotors.setInverted(rightInverted);
 
     setIdleMode(IdleMode.kBrake);
   }
 
   public void setIdleMode(IdleMode mode) {
-    leftDriveMaster.setIdleMode(mode);
-    leftDriveSlave1.setIdleMode(mode);
-    leftDriveSlave2.setIdleMode(mode);
+    ((CANSparkMax) rightMotor1).setIdleMode(mode);
+    ((CANSparkMax) rightMotor2).setIdleMode(mode);
+    ((CANSparkMax) rightMotor3).setIdleMode(mode);
 
-    rightDriveMaster.setIdleMode(mode);
-    rightDriveSlave1.setIdleMode(mode);
-    rightDriveSlave2.setIdleMode(mode);
+    ((CANSparkMax) leftMotor1).setIdleMode(mode);
+    ((CANSparkMax) leftMotor2).setIdleMode(mode);
+    ((CANSparkMax) leftMotor3).setIdleMode(mode);
+
+  // (problem here, not sure why; if fixable change to fixed version)
+    // leftMotor3.setIdleMode(mode); 
   }
 
   /**********
@@ -124,8 +120,8 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
    **********/
 
   public void resetEncoders() {
-    // leftEncoder.setPosition(0);
-    // rightEncoder.setPosition(0);
+    leftEncoder.setPosition(0);
+    rightEncoder.setPosition(0);
   }
 
   public void resetGyro() {
@@ -148,7 +144,7 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
    ******************/
 
   public IdleMode getIdleMode() {
-    return leftDriveMaster.getIdleMode();
+    return ((CANSparkMax) leftMotor1).getIdleMode();
   }
 
   public boolean isTrajectoryReversed() {
@@ -179,7 +175,7 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
     return reversedTrajectory ? -output : output;
   }
 
-  // Returns left and right linear speeds in m/s
+  // Returns left and right linear speeds in m/s j
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     if(isTrajectoryReversed())
       return new DifferentialDriveWheelSpeeds(getRightEncoderVelocity(), getLeftEncoderVelocity());
