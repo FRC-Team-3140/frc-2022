@@ -1,8 +1,5 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import com.kauailabs.navx.frc.AHRS;
 
 import com.revrobotics.RelativeEncoder;
@@ -35,28 +32,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
 
     public final DifferentialDrive m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
-
-    // Intake
-    public static CANSparkMax intakeMotor = new CANSparkMax(8, MotorType.kBrushed);
-
-    // Shooter
-    public static final MotorController flyWheelMotor1 = new CANSparkMax(9, MotorType.kBrushless);
-    public static final MotorController flyWheelMotor2 = new CANSparkMax(10, MotorType.kBrushless);
-    public final MotorControllerGroup flyWheelMotors = new MotorControllerGroup(flyWheelMotor1,flyWheelMotor2);
-
-    // Feeders
-    public static final MotorController ballFeeder = new CANSparkMax(11, MotorType.kBrushless);
-    public static final WPI_VictorSPX shooterFeeder = new WPI_VictorSPX(12);
-
-    // Climber
-    public static final WPI_VictorSPX climberMotor1 = new WPI_VictorSPX(13);
-    public static final WPI_VictorSPX climberMotor2 = new WPI_VictorSPX(14);
-    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1,climberMotor2);
-    
-
-    // Shooter Rotary Components
-    public static final TalonSRX hoodMotor = new TalonSRX(15);
-    public static final TalonSRX turretMotor = new TalonSRX(16);
 
     // Pnuematics
     public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
