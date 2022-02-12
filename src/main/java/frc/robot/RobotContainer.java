@@ -6,30 +6,30 @@ package frc.robot;
 import frc.robot.commands.drivetrain.Drive;
 // import frc.robot.commands.drivetrain.DriveDistanceCommandGenerator;
 // import frc.robot.commands.drivetrain.HoldPositionController;
-import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
+// import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
 import frc.robot.commands.drivetrain.TimedDrive;
-import frc.robot.commands.feeder.IncrementFeeder;
-import frc.robot.commands.feeder.ReverseFeeder;
-import frc.robot.commands.feeder.StopInting;
-import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShootOut;
+// import frc.robot.commands.feeder.IncrementFeeder;
+// import frc.robot.commands.feeder.ReverseFeeder;
+// import frc.robot.commands.feeder.StopInting;
+// import frc.robot.commands.flywheel.FlywheelShootOff;
+// import frc.robot.commands.flywheel.FlywheelShootOut;
 // import frc.robot.commands.pneumatics.climber.LockClimber;
 // import frc.robot.commands.pneumatics.climber.UnlockClimber;
-import frc.robot.commands.pneumatics.intake.DeployIntake;
-import frc.robot.commands.pneumatics.intake.RetractIntake;
-import frc.robot.subsystems.Climber;
-import frc.robot.commands.angledHood.AngleWithJoystick;
+// import frc.robot.commands.pneumatics.intake.DeployIntake;
+// import frc.robot.commands.pneumatics.intake.RetractIntake;
+// import frc.robot.subsystems.Climber;
+// import frc.robot.commands.angledHood.AngleWithJoystick;
 // import frc.robot.AutoGenerator;
-import frc.robot.commands.intake.SpinIntakeIn;
-import frc.robot.commands.intake.SpinIntakeOff;
-import frc.robot.commands.intake.SpinIntakeOut;
+// import frc.robot.commands.intake.SpinIntakeIn;
+// import frc.robot.commands.intake.SpinIntakeOff;
+// import frc.robot.commands.intake.SpinIntakeOut;
 //import frc.robot.commands.turret.AngleWithTurret;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Pneumatics;
+// import frc.robot.subsystems.Feeder;
+// import frc.robot.subsystems.Flywheel;
+// import frc.robot.subsystems.Hood;
+// import frc.robot.subsystems.Intake;
+// import frc.robot.subsystems.Pneumatics;
 //import frc.robot.subsystems.Turret;
 import frc.libs.*;
 import edu.wpi.first.cscore.UsbCamera;
@@ -45,12 +45,12 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   //  are declared here.
   // All classes required by any class instantiated here must, be instantiated before the instatiated class.
   public static final Drivetrain dt = new Drivetrain();
-  public static final Pneumatics pn = new Pneumatics();
-  public static final Climber cl = new Climber();
-  public static final Intake in = new Intake();
-  public static final Flywheel fw = new Flywheel();
-  public static final Feeder fd = new Feeder();
-  public static final Hood hd = new Hood();
+  // public static final Pneumatics pn = new Pneumatics();
+  // public static final Climber cl = new Climber();
+  // public static final Intake in = new Intake();
+  // public static final Flywheel fw = new Flywheel();
+  // public static final Feeder fd = new Feeder();
+  // public static final Hood hd = new Hood();
 //  public static final Turret tr = new Turret();
   
   // e.x. AutoGenerator uses Drivetrain classes, so it must be made after drivetrain
@@ -102,17 +102,15 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   private void configureButtonBindings() {
     // Primary Driver Controls
     //xbox.leftBumper.whileHeld(new HoldPositionController());
-    xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
+    // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
 
     // Intake balls
-    xbox2.leftBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeIn()).alongWith(new IncrementFeeder()));
-    xbox2.leftBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
+    // xbox2.leftBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeIn()).alongWith(new IncrementFeeder()));
+    // xbox2.leftBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
     
 
     // Dump balls if there's a jam
-    xbox2.rightBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeOut()).alongWith(new ReverseFeeder()));
-    xbox2.rightBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
-
+    
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());
     xbox2.dpadUp.whenReleased(new ClimberOff());
@@ -121,8 +119,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     */
   
     // xbox2 x automated shooting
-    xbox2.b.whileHeld(new FlywheelShootOut());
-    xbox2.b.whenReleased(new FlywheelShootOff());
+    
 
     /* climber piston
     xbox2.start.whenPressed(new LockClimber());
@@ -132,7 +129,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   private void configureDefaultCommands() {
     dt.setDefaultCommand(new Drive());
-    hd.setDefaultCommand(new AngleWithJoystick());
+    
    // tr.setDefaultCommand(new AngleWithTurret());
   }
 

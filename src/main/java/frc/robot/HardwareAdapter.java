@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Compressor;
@@ -32,6 +33,8 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorController leftMotor2 = new CANSparkMax(2, MotorType.kBrushless);
     public final MotorController leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
     public final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
+
+    public final DifferentialDrive m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
 
     // Intake
     public static CANSparkMax intakeMotor = new CANSparkMax(8, MotorType.kBrushed);
