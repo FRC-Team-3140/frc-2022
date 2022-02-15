@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -18,8 +18,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class Robot extends TimedRobot {
   private DifferentialDrive m_myRobot;
-  private Joystick m_leftStick;
-  private Joystick m_rightStick;
+  private XboxController controller;
 
   private final MotorController rightMotor1 = new CANSparkMax(6, MotorType.kBrushless);
   private final MotorController rightMotor2 = new CANSparkMax(5, MotorType.kBrushless);
@@ -31,7 +30,6 @@ public class Robot extends TimedRobot {
   private final MotorController leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
   private final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
 
-
   @Override
   public void robotInit() {
     // We need to invert one side of the drivetrain so that positive voltages
@@ -40,11 +38,11 @@ public class Robot extends TimedRobot {
     rightSideMotors.setInverted(true);
 
     m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
-    m_leftStick = new Joystick(0);
+    controller = new XboxController(0);
   }
 
   @Override
   public void teleopPeriodic() {
-    m_myRobot.tankDrive(m_leftStick.getY(), -m_leftStick.getRawAxis(5));
+    m_myRobot.tankDrive(controller.getLeftY(),controller.getRightY());
   }
 }
