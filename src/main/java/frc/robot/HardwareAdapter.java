@@ -31,8 +31,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorController leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
     public final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
 
-    public final DifferentialDrive m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
-
     // Pnuematics
     public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
