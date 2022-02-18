@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     // gearbox is constructed, you might have to invert the left side instead.
     rightSideMotors.setInverted(true);
 
-    m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
+    m_myRobot = new DifferentialDrive(leftSideMotors, rightSideMotors);
     controller = new XboxController(0);
   }
 
