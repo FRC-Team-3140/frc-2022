@@ -1,10 +1,11 @@
 package frc.libs;
 
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 
-public final class XboxController extends Joystick implements Constants.GeneralConstants {
+public final class SmoothXboxController extends XboxController implements Constants.GeneralConstants {
 	// Internal Buttons
 	public JoystickButton a;
 	public JoystickButton b;
@@ -25,7 +26,7 @@ public final class XboxController extends Joystick implements Constants.GeneralC
 	public DpadButton dpadUp;
 	public DpadButton dpadDown;
 	
-	public XboxController(int port) {
+	public SmoothXboxController(int port) {
 		super(port);
 		// Buttons
 		a = new JoystickButton(this, 1);
@@ -44,50 +45,22 @@ public final class XboxController extends Joystick implements Constants.GeneralC
 		dpadUp = new DpadButton(this, 180);
 	}
 	
-	public double getMainX(){
-		return -super.getRawAxis(0);
-	}
-	
-	public double getMainY(){
-		return -super.getRawAxis(1);
-	}
-	
-	public double getAltX(){
-		return -super.getRawAxis(4);
-	}
-	
-	public double getAltY(){
-		return -super.getRawAxis(5);
-	}
-
-	public double getLeftTrigger() {
-		return super.getRawAxis(2);
-	}
-
-	public double getRightTrigger() {
-		return super.getRawAxis(3);
-	}
-	
 	public double getSmoothedMainX() {
-		return getDeadband(-Math.pow(super.getRawAxis(0), 3));
-		//return getDeadband(-Math.sin(Math.PI/2 * super.getRawAxis(0)));
+		return getDeadband(Math.pow(super.getRawAxis(0), 3));
 	}
 	
 	public double getSmoothedMainY() {
-		return getDeadband(-Math.pow(super.getRawAxis(1), 3));
-		//return getDeadband(-Math.sin(Math.PI/2 * super.getRawAxis(1)));
+		return getDeadband(Math.pow(super.getRawAxis(1), 3));
 	}
 	
 	public double getSmoothedAltX() {
-		return getDeadband(-Math.pow(super.getRawAxis(4), 3));
-		//return getDeadband(-Math.sin(Math.PI/2 * super.getRawAxis(4)));
+		return getDeadband(Math.pow(super.getRawAxis(4), 3));
 	}
 	
 	public double getSmoothedAltY() {
-		return getDeadband(-Math.pow(super.getRawAxis(5), 3));
-		//return getDeadband(-Math.sin(Math.PI/2 * super.getRawAxis(5)));
+		return getDeadband(Math.pow(super.getRawAxis(5), 3));
 	}
-
+	
 	private double getDeadband(double d) {
 		if(Math.abs(d) > DEADBAND) return d;
 		else return 0;

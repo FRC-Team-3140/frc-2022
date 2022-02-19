@@ -66,8 +66,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   private static final SendableChooser<Command> chooser = new SendableChooser<>();
 
   // Xbox controllers
-  public static final XboxController xbox = new XboxController(xboxPrimaryDriver);
-  public static final XboxController xbox2 = new XboxController(xboxSecondaryDriver);
+  public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
 
   private UsbCamera camera;
 

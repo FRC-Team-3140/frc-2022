@@ -14,7 +14,7 @@ public class Drive extends CommandBase {
 
   @Override
   public void execute() {
-    double throttle = RobotContainer.xbox.getSmoothedMainY();
+    double throttle = RobotContainer.xbox.getRightY();
     double heading = RobotContainer.xbox.getSmoothedAltX();
 
     RobotContainer.dt.arcadeDrive(throttle, heading);
