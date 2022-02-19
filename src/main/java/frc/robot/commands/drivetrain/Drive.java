@@ -14,10 +14,10 @@ public class Drive extends CommandBase {
 
   @Override
   public void execute() {
-    double throttle = RobotContainer.xbox.getRightY();
-    double heading = RobotContainer.xbox.getSmoothedAltX();
+    double LeftSide = RobotContainer.xbox.getLeftY();
+    double RightSide = RobotContainer.xbox.getRightY();
 
-    RobotContainer.dt.arcadeDrive(throttle, heading);
+    RobotContainer.dt.tankDrive(LeftSide, RightSide);
   }
 
   @Override

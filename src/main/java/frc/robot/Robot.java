@@ -10,7 +10,7 @@ public class Robot extends TimedRobot {
   private Command autoCommand;
   private RobotContainer robotContainer;
   private DifferentialDrive m_myRobot;
-  private Joystick m_leftStick;
+  private XboxController controller;
   // private Joystick m_rightStick;
 
 
@@ -22,8 +22,6 @@ public class Robot extends TimedRobot {
 
 
     // m_myRobot = new DifferentialDrive(rightSideMotors, leftSideMotors);
-    m_leftStick = new Joystick(0);
-
     robotContainer = new RobotContainer();
 
   }
@@ -63,7 +61,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    m_myRobot.tankDrive(m_leftStick.getY(), -m_leftStick.getRawAxis(5));
+    m_myRobot.tankDrive(controller.getLeftY(), controller.getRightY());
   }
 
   @Override
