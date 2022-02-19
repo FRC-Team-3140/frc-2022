@@ -4,6 +4,8 @@ package frc.robot;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber;
 import frc.robot.commands.drivetrain.Drive;
+import static edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.DriveDistanceCommandGenerator;
 // import frc.robot.commands.drivetrain.HoldPositionController;
 // import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
@@ -103,7 +105,10 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // Primary Driver Controls
     //xbox.leftBumper.whileHeld(new HoldPositionController());
     // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
+    new JoystickButton(xbox, Button.kA.value)
+      .whenPressed(new TimedDrive(0.3,0.5));
 
+ 
     // Intake balls
     // xbox2.leftBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeIn()).alongWith(new IncrementFeeder()));
     // xbox2.leftBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
