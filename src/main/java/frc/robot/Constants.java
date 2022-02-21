@@ -93,6 +93,8 @@ public interface Constants {
 		public final static int leftMotor2 = 2;
 		public final static int leftMotor3 = 3;
 
+		public static enum TurnMode {Right, Left};
+
 		// Intake
 		public final static int intakeMotor = 8;
 

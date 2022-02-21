@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.HoldPositionController;
 // import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
 import frc.robot.commands.drivetrain.TimedDrive;
+import frc.robot.commands.drivetrain.TimedTurn;
 // import frc.robot.commands.feeder.IncrementFeeder;
 // import frc.robot.commands.feeder.ReverseFeeder;
 // import frc.robot.commands.feeder.StopInting;
@@ -107,6 +108,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
     new JoystickButton(xbox, Button.kA.value)
       .whenPressed(new TimedDrive(0.3,0.5));
+
+    new JoystickButton(xbox, Button.kB.value)
+      .whenPressed(new TimedTurn(0.3,0.5));  
 
  
     // Intake balls
