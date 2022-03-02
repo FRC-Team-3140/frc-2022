@@ -30,6 +30,22 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorController leftMotor2 = new CANSparkMax(2, MotorType.kBrushless);
     public final MotorController leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
     public final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
+
+    //Flywheel
+    public final MotorController flywheelMotor1 = new CANSparkMax(7, MotorType.kBrushless);
+    public final MotorController flywheelMotor2 = new CANSparkMax(8, MotorType.kBrushless);
+    public final MotorControllerGroup flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
+
+    //Intake
+    public final MotorController intakeMotor = new CANSparkMax(11, MotorType.kBrushless);
+
+    //Feeder
+    public final MotorController feedMotor = new CANSparkMax(12, MotorType.kBrushless);
+
+    //Shooter
+    public final MotorController shooterMotor1 = new CANSparkMax(9, MotorType.kBrushless);
+    public final MotorController shooterMotor2 = new CANSparkMax(10, MotorType.kBrushless);
+    public final MotorControllerGroup shooterMotors = new MotorControllerGroup(shooterMotor1, shooterMotor2);
      
     // Pnuematics
     public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
