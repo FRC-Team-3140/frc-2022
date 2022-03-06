@@ -8,11 +8,11 @@ public class Intake extends SubsystemBase implements HardwareAdapter {
   }
 
   public void spinIn() {
-    intakeMotor.set(1);
+    intakeMotors.set(1);
   }
 
   public void spinOff() {
-    intakeMotor.set(0);
+    intakeMotors.set(0);
   }
 
   @Override

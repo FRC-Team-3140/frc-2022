@@ -36,16 +36,18 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorControllerGroup flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
 
     //Intake
-    public final MotorController intakeMotor = new CANSparkMax(11, MotorType.kBrushless); 
+    public final MotorController intakeMotor1 = new CANSparkMax(9, MotorType.kBrushless); 
+    public final MotorController intakeMotor2 = new CANSparkMax(10, MotorType.kBrushless);
+    public final MotorControllerGroup intakeMotors = new MotorControllerGroup(intakeMotor1, intakeMotor2);
 
     //Feeder
-    public final MotorController feedMotor = new CANSparkMax(12, MotorType.kBrushless);
+    public final MotorController feedMotor = new CANSparkMax(11, MotorType.kBrushless);
 
-    //Shooter
-    public final MotorController shooterMotor1 = new CANSparkMax(9, MotorType.kBrushless);
-    public final MotorController shooterMotor2 = new CANSparkMax(10, MotorType.kBrushless);
-    public final MotorControllerGroup shooterMotors = new MotorControllerGroup(shooterMotor1, shooterMotor2);
-     
+    //Climber
+    public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);
+    public final MotorController climberMotor2 = new CANSparkMax(14, MotorType.kBrushless);
+    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1, climberMotor2);
+
     // Pnuematics
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
@@ -56,12 +58,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     // Gyro
     public static final AHRS navx = new AHRS(SPI.Port.kMXP);
-
-    // CLimber
-    public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);
-    public final MotorController climberMotor2 = new CANSparkMax(14, MotorType.kBrushless);
-    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1,climberMotor2);
-
     
     // Analog Inputs
     // Relays

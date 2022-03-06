@@ -96,12 +96,12 @@ public interface Constants {
 		public static enum TurnMode {Right, Left};
 
 		// Intake
-		public final static int intakeMotor1 = 7;
-		public final static int intakeMotor2 = 8;
+		public final static int intakeMotor1 = 9;
+		public final static int intakeMotor2 = 10;
 
-		// Shooter
-		public final static int flyWheelMotor1 = 9;
-		public final static int flyWheelMotor2 = 10;
+		// Flywheel
+		public final static int flyWheelMotor1 = 7;
+		public final static int flyWheelMotor2 = 8;
 
 		// Feeders
 		public final static int ballFeeder = 11;
