@@ -1,8 +1,10 @@
 package frc.robot;
 
+import frc.robot.commands.Intake.SpinIntakeIn;
+import frc.robot.commands.Intake.SpinIntakeOff;
 //import frc.robot.commands.climber.ClimberOff;
 //import frc.robot.commands.climber.ExtendClimber;
-//import frc.robot.commands.climber.RetractClimber;
+//import frc.robot.commands.climber.RetractClimber
 import frc.robot.commands.drivetrain.Drive;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -11,28 +13,17 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
-// import frc.robot.commands.feeder.IncrementFeeder;
-// import frc.robot.commands.feeder.ReverseFeeder;
-// import frc.robot.commands.feeder.StopInting;
-// import frc.robot.commands.flywheel.FlywheelShootOff;
-// import frc.robot.commands.flywheel.FlywheelShootOut;
-// import frc.robot.commands.pneumatics.climber.LockClimber;
-// import frc.robot.commands.pneumatics.climber.UnlockClimber;
-// import frc.robot.commands.pneumatics.intake.DeployIntake;
-// import frc.robot.commands.pneumatics.intake.RetractIntake;
-// import frc.robot.subsystems.Climber;
-// import frc.robot.commands.angledHood.AngleWithJoystick;
-// import frc.robot.AutoGenerator;
-// import frc.robot.commands.intake.SpinIntakeIn;
-// import frc.robot.commands.intake.SpinIntakeOff;
-// import frc.robot.commands.intake.SpinIntakeOut;
+import frc.robot.commands.flywheel.FlywheelShootOff;
+import frc.robot.commands.flywheel.FlywheelShootOut;
+import frc.robot.commands.pneumatics.Intake.DeployIntake;
+import frc.robot.commands.pneumatics.Intake.RetractIntake;
 //import frc.robot.commands.turret.AngleWithTurret;
 import frc.robot.subsystems.Drivetrain;
-// import frc.robot.subsystems.Feeder;
-// import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Flywheel;
 // import frc.robot.subsystems.Hood;
-// import frc.robot.subsystems.Intake;
-// import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Pneumatics;
 //import frc.robot.subsystems.Turret;
 import frc.libs.*;
 import edu.wpi.first.cscore.UsbCamera;
@@ -49,11 +40,11 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   // All classes required by any class instantiated here must, be instantiated before the instatiated class.
 
   public static final Drivetrain dt = new Drivetrain();
-  // public static final Pneumatics pn = new Pneumatics();
+  public static final Pneumatics pn = new Pneumatics();
   // public static final Climber cl = new Climber();
-  // public static final Intake in = new Intake();
-  // public static final Flywheel fw = new Flywheel();
-  // public static final Feeder fd = new Feeder();
+  public static final Intake in = new Intake();
+  public static final Flywheel fw = new Flywheel();
+  public static final Feeder fd = new Feeder();
   // public static final Hood hd = new Hood();
 //  public static final Turret tr = new Turret();
   
@@ -83,18 +74,18 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.setDefaultOption("Timed Drive", new TimedDrive(0.5, 1));
     // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
-    /*
-    chooser.addOption("Drive Straight", ag.getDriveStraightAuto());
-    chooser.addOption("Three Ball Auto", ag.getThreeBallAuto());
-    chooser.addOption("Five Ball Auto", ag.getFiveBallAuto());
-    chooser.addOption("Eight Ball Auto", ag.getEightBallAuto());
-    chooser.addOption("Ten Ball Auto", ag.getTenBallAuto());
-    chooser.addOption("Drive Around Post", ag.makeFollowingCommandForAuto("AroundPostTest.wpilib.json"));
-    chooser.addOption("Hold Position Test", new HoldPositionController());
-    chooser.addOption("Timed Drive", new TimedDrive(0.5, 2));
-    chooser.addOption("Trajectory Distance Drive", new DriveDistanceCommandGenerator(3).getCommand());
-    chooser.addOption("Trajectory Distance Drive Backwards", new DriveDistanceCommandGenerator(-3).getCommand());
-    */
+  
+    // chooser.addOption("Drive Straight", ag.getDriveStraightAuto());
+    // chooser.addOption("Three Ball Auto", ag.getThreeBallAuto());
+    // chooser.addOption("Five Ball Auto", ag.getFiveBallAuto());
+    // chooser.addOption("Eight Ball Auto", ag.getEightBallAuto());
+    // chooser.addOption("Ten Ball Auto", ag.getTenBallAuto());
+    // chooser.addOption("Drive Around Post", ag.makeFollowingCommandForAuto("AroundPostTest.wpilib.json"));
+    // chooser.addOption("Hold Position Test", new HoldPositionController());
+    // chooser.addOption("Timed Drive", new TimedDrive(0.5, 2));
+    // chooser.addOption("Trajectory Distance Drive", new DriveDistanceCommandGenerator(3).getCommand());
+    // chooser.addOption("Trajectory Distance Drive Backwards", new DriveDistanceCommandGenerator(-3).getCommand());
+  
 
     Shuffleboard.getTab("Selector").add(chooser);
 
@@ -106,19 +97,31 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // Primary Driver Controls
     //xbox.leftBumper.whileHeld(new HoldPositionController());
     // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
+
     new JoystickButton(xbox, Button.kA.value)
       .whenPressed(new TimedDrive(0.3,0.5));
 
     new JoystickButton(xbox, Button.kB.value)
       .whenPressed(new TimedTurn(0.3,0.5));  
 
- 
-    // Intake balls
-    // xbox2.leftBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeIn()).alongWith(new IncrementFeeder()));
-    // xbox2.leftBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
-    
+    new JoystickButton(xbox, Button.kLeftBumper.value)
+      .whenPressed(new SpinIntakeIn())
+      .whenPressed(new DeployIntake())
+      .whenReleased(new SpinIntakeOff())
+      .whenReleased(new RetractIntake());
 
-    // Dump balls if there's a jam
+    new JoystickButton(xbox, Button.kRightBumper.value)
+      .whenPressed(new FlywheelShootOut())
+      .whenReleased(new FlywheelShootOff());
+      
+    //if (timer is in endgame/last 30 seconds)
+    // new JoystickButton(xbox, Button.kX.value)
+    //  .whenPressed(new DeployClimber)
+    
+    //new JoystickButton(xbox, Button.kY.value)
+    //  .whenPressed(new MoveClimber)
+
+
     
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());

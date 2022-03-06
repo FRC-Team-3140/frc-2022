@@ -30,9 +30,27 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorController leftMotor2 = new CANSparkMax(2, MotorType.kBrushless);
     public final MotorController leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
     public final MotorControllerGroup leftSideMotors = new MotorControllerGroup(leftMotor1,leftMotor2,leftMotor3);
-     
+
+    //Flywheel
+    public final MotorController flywheelMotor1 = new CANSparkMax(7, MotorType.kBrushless);
+    public final MotorController flywheelMotor2 = new CANSparkMax(8, MotorType.kBrushless);
+    public final MotorControllerGroup flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
+
+    //Intake
+    public final MotorController intakeMotor1 = new CANSparkMax(9, MotorType.kBrushless); 
+    public final MotorController intakeMotor2 = new CANSparkMax(10, MotorType.kBrushless);
+    public final MotorControllerGroup intakeMotors = new MotorControllerGroup(intakeMotor1, intakeMotor2);
+
+    //Feeder
+    public final MotorController feedMotor = new CANSparkMax(11, MotorType.kBrushless);
+
+    //Climber
+    public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);
+    public final MotorController climberMotor2 = new CANSparkMax(14, MotorType.kBrushless);
+    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1, climberMotor2);
+
     // Pnuematics
-    public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
