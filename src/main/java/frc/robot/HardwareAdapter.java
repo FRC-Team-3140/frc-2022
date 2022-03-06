@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -49,6 +50,7 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1, climberMotor2);
 
     // Pnuematics
+    public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
