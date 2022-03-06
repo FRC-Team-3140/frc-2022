@@ -7,7 +7,6 @@ import frc.robot.HardwareAdapter;
 
 public class Pneumatics extends SubsystemBase  implements Constants, HardwareAdapter {
   public Pneumatics() {
-    
   }
 
   public void setIntakeState(Value v) {

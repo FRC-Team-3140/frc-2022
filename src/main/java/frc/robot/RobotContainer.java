@@ -13,9 +13,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
-// import frc.robot.commands.feeder.IncrementFeeder;
-// import frc.robot.commands.feeder.ReverseFeeder;
-// import frc.robot.commands.feeder.StopInting;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -77,18 +74,18 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.setDefaultOption("Timed Drive", new TimedDrive(0.5, 1));
     // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
-    /*
-    chooser.addOption("Drive Straight", ag.getDriveStraightAuto());
-    chooser.addOption("Three Ball Auto", ag.getThreeBallAuto());
-    chooser.addOption("Five Ball Auto", ag.getFiveBallAuto());
-    chooser.addOption("Eight Ball Auto", ag.getEightBallAuto());
-    chooser.addOption("Ten Ball Auto", ag.getTenBallAuto());
-    chooser.addOption("Drive Around Post", ag.makeFollowingCommandForAuto("AroundPostTest.wpilib.json"));
-    chooser.addOption("Hold Position Test", new HoldPositionController());
-    chooser.addOption("Timed Drive", new TimedDrive(0.5, 2));
-    chooser.addOption("Trajectory Distance Drive", new DriveDistanceCommandGenerator(3).getCommand());
-    chooser.addOption("Trajectory Distance Drive Backwards", new DriveDistanceCommandGenerator(-3).getCommand());
-    */
+  
+    // chooser.addOption("Drive Straight", ag.getDriveStraightAuto());
+    // chooser.addOption("Three Ball Auto", ag.getThreeBallAuto());
+    // chooser.addOption("Five Ball Auto", ag.getFiveBallAuto());
+    // chooser.addOption("Eight Ball Auto", ag.getEightBallAuto());
+    // chooser.addOption("Ten Ball Auto", ag.getTenBallAuto());
+    // chooser.addOption("Drive Around Post", ag.makeFollowingCommandForAuto("AroundPostTest.wpilib.json"));
+    // chooser.addOption("Hold Position Test", new HoldPositionController());
+    // chooser.addOption("Timed Drive", new TimedDrive(0.5, 2));
+    // chooser.addOption("Trajectory Distance Drive", new DriveDistanceCommandGenerator(3).getCommand());
+    // chooser.addOption("Trajectory Distance Drive Backwards", new DriveDistanceCommandGenerator(-3).getCommand());
+  
 
     Shuffleboard.getTab("Selector").add(chooser);
 
@@ -100,6 +97,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // Primary Driver Controls
     //xbox.leftBumper.whileHeld(new HoldPositionController());
     // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
+
     new JoystickButton(xbox, Button.kA.value)
       .whenPressed(new TimedDrive(0.3,0.5));
 
@@ -112,13 +110,18 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake());
 
- 
-    // Intake balls
-    // xbox.leftBumper.whenPressed(new DeployIntake().alongWith(new SpinIntakeIn()).alongWith(new IncrementFeeder()));
-    // xbox.leftBumper.whenReleased(new RetractIntake().alongWith(new SpinIntakeOff()).alongWith(new StopInting()));
+    new JoystickButton(xbox, Button.kRightBumper.value)
+      .whenPressed(new FlywheelShootOut())
+      .whenReleased(new FlywheelShootOff());
+      
+    //if (timer is in endgame/last 30 seconds)
+    // new JoystickButton(xbox, Button.kX.value)
+    //  .whenPressed(new DeployClimber)
     
+    //new JoystickButton(xbox, Button.kY.value)
+    //  .whenPressed(new MoveClimber)
 
-    // Dump balls if there's a jam
+
     
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());

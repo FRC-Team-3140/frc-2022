@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -37,7 +36,7 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorControllerGroup flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
 
     //Intake
-    public final MotorController intakeMotor = new CANSparkMax(11, MotorType.kBrushless);
+    public final MotorController intakeMotor = new CANSparkMax(11, MotorType.kBrushless); 
 
     //Feeder
     public final MotorController feedMotor = new CANSparkMax(12, MotorType.kBrushless);
@@ -48,7 +47,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final MotorControllerGroup shooterMotors = new MotorControllerGroup(shooterMotor1, shooterMotor2);
      
     // Pnuematics
-    public static final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
@@ -58,6 +56,12 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     // Gyro
     public static final AHRS navx = new AHRS(SPI.Port.kMXP);
+
+    // CLimber
+    public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);
+    public final MotorController climberMotor2 = new CANSparkMax(14, MotorType.kBrushless);
+    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1,climberMotor2);
+
     
     // Analog Inputs
     // Relays

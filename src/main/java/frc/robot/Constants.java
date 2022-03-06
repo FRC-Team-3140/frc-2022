@@ -107,12 +107,12 @@ public interface Constants {
 		public final static int ballFeeder = 11;
 
 		// Climber
-		// public final static int climberMotor1 = 13;
-		// public final static int climberMotor2 = 14;
+		public final static int climberMotor1 = 13;
+		public final static int climberMotor2 = 14;
 
 		// Shooter Rotary Components
-		public final static int hoodMotor = 15;
-		public final static int turretMotor = 16;
+		// public final static int hoodMotor = 15;
+		// public final static int turretMotor = 16;
 
 		// Limit Switches
 		public final static int HOOD_LIMIT = 0;
