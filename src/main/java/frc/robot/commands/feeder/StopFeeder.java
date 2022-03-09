@@ -3,9 +3,9 @@ package frc.robot.commands.feeder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class IncrementFeeder extends CommandBase {
+public class StopFeeder extends CommandBase {
 
-  public IncrementFeeder() {
+  public StopFeeder() {
     addRequirements(RobotContainer.fd);
   }
 
@@ -17,7 +17,7 @@ public class IncrementFeeder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.fd.feedForward();;
+    RobotContainer.fd.stopFeed();;;
   }
 
   // Called once the command ends or is interrupted.

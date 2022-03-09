@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.ReducedSpeedTurningDrive;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
+import frc.robot.commands.feeder.IncrementFeeder;
+import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -28,6 +30,7 @@ import frc.robot.subsystems.Pneumatics;
 import frc.libs.*;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -104,19 +107,24 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     new JoystickButton(xbox, Button.kB.value)
       .whenPressed(new TimedTurn(0.3,0.5));  
 
-    new JoystickButton(xbox, Button.kLeftBumper.value)
+    new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
+      .whenPressed(new IncrementFeeder())
       .whenReleased(new SpinIntakeOff())
-      .whenReleased(new RetractIntake());
+      .whenReleased(new RetractIntake())
+      .whenReleased(new StopFeeder());
 
-    new JoystickButton(xbox, Button.kRightBumper.value)
+    new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new FlywheelShootOut())
       .whenReleased(new FlywheelShootOff());
+
+    // new JoystickButton(xbox, Axis.kRightTrigger)
+
       
     //if (timer is in endgame/last 30 seconds)
     // new JoystickButton(xbox, Button.kX.value)
-    //  .whenPressed(new DeployClimber)
+    //  .whenPressed(new MoveClimber)
     
     //new JoystickButton(xbox, Button.kY.value)
     //  .whenPressed(new MoveClimber)

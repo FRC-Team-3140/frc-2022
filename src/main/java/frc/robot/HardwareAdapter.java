@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 import com.revrobotics.RelativeEncoder;
@@ -34,15 +35,16 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     //Flywheel
     public final MotorController flywheelMotor1 = new CANSparkMax(7, MotorType.kBrushless);
     public final MotorController flywheelMotor2 = new CANSparkMax(8, MotorType.kBrushless);
-    public final MotorControllerGroup flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
 
     //Intake
     public final MotorController intakeMotor1 = new CANSparkMax(9, MotorType.kBrushless); 
     public final MotorController intakeMotor2 = new CANSparkMax(10, MotorType.kBrushless);
-    public final MotorControllerGroup intakeMotors = new MotorControllerGroup(intakeMotor1, intakeMotor2);
 
-    //Feeder
-    public final MotorController feedMotor = new CANSparkMax(11, MotorType.kBrushless);
+    //Feed
+    public final VictorSPX feedMotor = new VictorSPX(12);
+
+    //Sushi Kicker
+    public final MotorController sushiMotorController = new CANSparkMax(11, MotorType.kBrushless);
 
     //Climber
     public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);

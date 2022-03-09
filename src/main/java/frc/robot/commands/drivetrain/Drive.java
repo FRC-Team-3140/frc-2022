@@ -14,8 +14,8 @@ public class Drive extends CommandBase {
 
   @Override
   public void execute() {
-    double throttle = RobotContainer.xbox.getLeftY();
-    double heading = RobotContainer.xbox.getRightY();
+    double throttle = -RobotContainer.xbox.getLeftY();
+    double heading = -RobotContainer.xbox.getRightX();
     heading*=0.7;// make it a little less sensitive
     RobotContainer.dt.tankDrive(throttle - heading, throttle + heading);
   }

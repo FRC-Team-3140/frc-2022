@@ -9,9 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class Flywheel extends SubsystemBase implements HardwareAdapter {
+  public final MotorControllerGroup flywheelMotors;
   public Flywheel() {
+    flywheelMotor1.setInverted(true);
+    flywheelMotor2.setInverted(false);
+    flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
   }
    
   public void shootOut() {
