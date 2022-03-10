@@ -44,7 +44,7 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final VictorSPX feedMotor = new VictorSPX(12);
 
     //Sushi Kicker
-    public final MotorController sushiMotorController = new CANSparkMax(11, MotorType.kBrushless);
+    public final MotorController sushiMotor = new CANSparkMax(11, MotorType.kBrushless);
 
     //Climber
     public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);

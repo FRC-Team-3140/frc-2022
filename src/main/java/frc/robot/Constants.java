@@ -104,7 +104,7 @@ public interface Constants {
 		public final static int flyWheelMotor2 = 8;
 
 		// Feeders
-		public final static int ballFeeder = 11;
+		public final static int sushiMotor = 11;
 
 		// Climber
 		public final static int climberMotor1 = 13;

@@ -19,10 +19,13 @@ import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
 import frc.robot.commands.pneumatics.Intake.RetractIntake;
+import frc.robot.commands.sushiKicker.spinSushiOff;
+import frc.robot.commands.sushiKicker.spinSushiOn;
 //import frc.robot.commands.turret.AngleWithTurret;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.Sushi;
 // import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
@@ -30,7 +33,7 @@ import frc.robot.subsystems.Pneumatics;
 import frc.libs.*;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.XboxController.Axis;
+// import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -48,6 +51,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public static final Intake in = new Intake();
   public static final Flywheel fw = new Flywheel();
   public static final Feeder fd = new Feeder();
+  public static final Sushi su = new Sushi();
   // public static final Hood hd = new Hood();
 //  public static final Turret tr = new Turret();
   
@@ -117,7 +121,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new FlywheelShootOut())
-      .whenReleased(new FlywheelShootOff());
+      .whenReleased(new FlywheelShootOff())
+      .whenPressed(new spinSushiOn())
+      .whenReleased(new spinSushiOff());
 
     // new JoystickButton(xbox, Axis.kRightTrigger)
 
@@ -145,6 +151,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     xbox2.start.whenPressed(new LockClimber());
     xbox2.select.whenPressed(new UnlockClimber());
  */
+  }
+
+  private void whenReleased(spinSushiOff spinSushiOff) {
   }
 
   private void configureDefaultCommands() {
