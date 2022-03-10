@@ -8,10 +8,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Feeder extends SubsystemBase implements HardwareAdapter {
   public Feeder() {
+    feedMotor.setInverted(true);
   }
 
   public void feedForward() {
-    feedMotor.set(ControlMode.PercentOutput, -1);
+    feedMotor.set(ControlMode.PercentOutput, 1);
   }
 
   public void stopFeed() {

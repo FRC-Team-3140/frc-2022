@@ -17,6 +17,7 @@ import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
+import frc.robot.commands.pneumatics.Intake.MoveIntake;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
 import frc.robot.commands.pneumatics.Intake.RetractIntake;
 import frc.robot.commands.sushiKicker.spinSushiOff;
@@ -31,8 +32,10 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
 //import frc.robot.subsystems.Turret;
 import frc.libs.*;
+import frc.robot.Constants;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 // import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -114,6 +117,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
+      // .whenPressed(new MoveIntake(Value.kForward))
+      // .whenReleased(new MoveIntake(Value.kReverse)) 
       .whenPressed(new IncrementFeeder())
       .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake())

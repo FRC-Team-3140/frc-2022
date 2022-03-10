@@ -13,7 +13,7 @@ public class Intake extends SubsystemBase implements HardwareAdapter {
   }
 
   public void spinIn() {
-    intakeMotors.set(1);
+    intakeMotors.set(0.5);
   }
 
   public void spinOff() {
