@@ -17,7 +17,8 @@ import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
-import frc.robot.commands.pneumatics.Intake.MoveIntake;
+import frc.robot.commands.pneumatics.Fingers.DeployFingers;
+import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
 import frc.robot.commands.pneumatics.Intake.RetractIntake;
 import frc.robot.commands.sushiKicker.spinSushiOff;
@@ -72,6 +73,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
+  public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
 
   private UsbCamera camera;
 
@@ -105,8 +107,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   private void configureButtonBindings() {
     // Primary Driver Controls
-    //xbox.leftBumper.whileHeld(new HoldPositionController());
-    // xbox.rightBumper.whileHeld(new ReducedSpeedTurningDrive());
 
     new JoystickButton(xbox, Button.kA.value)
       .whenPressed(new TimedDrive(0.3,0.5));
@@ -114,11 +114,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     new JoystickButton(xbox, Button.kB.value)
       .whenPressed(new TimedTurn(0.3,0.5));  
 
+    new JoystickButton(xbox, Button.kX.value)  
+       .whenPressed(new DeployFingers()) 
+       .whenReleased(new RetractFingers());
+
     new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
-      // .whenPressed(new MoveIntake(Value.kForward))
-      // .whenReleased(new MoveIntake(Value.kReverse)) 
       .whenPressed(new IncrementFeeder())
       .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake())
@@ -127,18 +129,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new FlywheelShootOut())
       .whenReleased(new FlywheelShootOff())
-      .whenPressed(new spinSushiOn())
+      .whenPressed(new spinSushiOn()) 
       .whenReleased(new spinSushiOff());
 
-    // new JoystickButton(xbox, Axis.kRightTrigger)
-
-      
-    //if (timer is in endgame/last 30 seconds)
-    // new JoystickButton(xbox, Button.kX.value)
-    //  .whenPressed(new MoveClimber)
-    
-    //new JoystickButton(xbox, Button.kY.value)
-    //  .whenPressed(new MoveClimber)
 
 
     
@@ -148,17 +141,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     xbox2.dpadDown.whenReleased(new ClimberOff());
     xbox2.dpadDown.whenPressed(new RetractClimber());
     */
-  
-    // xbox2 x automated shooting
-    
-
-    /* climber piston
-    xbox2.start.whenPressed(new LockClimber());
-    xbox2.select.whenPressed(new UnlockClimber());
- */
-  }
-
-  private void whenReleased(spinSushiOff spinSushiOff) {
   }
 
   private void configureDefaultCommands() {

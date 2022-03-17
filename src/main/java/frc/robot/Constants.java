@@ -19,7 +19,7 @@ public interface Constants {
 		public final static Value RET = Value.kReverse;
 		public final static Value OFF = Value.kOff;
 		// OI
-		public final static double DEADBAND = 0.05;
+		public final static double DEADBAND = 0.1;
 
 		// Use meters, seconds, degrees (180deg to -180deg) (CCWP), and volts for all units.
 		public interface PhysicalConstants {

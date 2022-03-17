@@ -53,8 +53,9 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     // Pnuematics
     public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
-    public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
-    public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+    public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(1,PneumaticsModuleType.CTREPCM, 3, 2);
+    public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(1,PneumaticsModuleType.CTREPCM, 4, 5);
+    public static final DoubleSolenoid fingerSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.CTREPCM, 0, 1);
 
     // Encoders
     public static final RelativeEncoder leftEncoder =  ((CANSparkMax) leftMotor1).getEncoder();

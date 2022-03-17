@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
+import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class Flywheel extends SubsystemBase implements HardwareAdapter {
@@ -20,7 +21,7 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   }
    
   public void shootOut() {
-    flywheelMotors.set(1);
+    flywheelMotors.set(RobotContainer.xbox.getLeftTriggerAxis());
   }
 
   public void shootOff() {
