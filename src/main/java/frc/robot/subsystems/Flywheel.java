@@ -21,7 +21,7 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   }
    
   public void shootOut() {
-    flywheelMotors.set(RobotContainer.xbox.getLeftTriggerAxis());
+    flywheelMotors.set(RobotContainer.xbox2.getLeftTriggerAxis());
   }
 
   public void shootOff() {

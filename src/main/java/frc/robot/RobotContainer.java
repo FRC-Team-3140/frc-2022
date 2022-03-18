@@ -33,10 +33,11 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
 //import frc.robot.subsystems.Turret;
 import frc.libs.*;
-import frc.robot.Constants;
+// import frc.robot.Constants;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+// import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 // import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -83,7 +84,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     camera.setResolution(320, 240);
 
    // chooser.setName("Please Select and Auto"); // (this works; find alternatives)
-    chooser.setDefaultOption("Timed Drive", new TimedDrive(0.5, 1));
+    chooser.setDefaultOption("Do Nothing Auto", new TimedDrive(0, 0));
+    chooser.addOption("Timed Drive Short", new TimedDrive(0.5, 2));
+    chooser.addOption("Timed Drive Long", new TimedDrive(0.5, 5));
     // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
   
@@ -108,29 +111,31 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   private void configureButtonBindings() {
     // Primary Driver Controls
 
-    new JoystickButton(xbox, Button.kA.value)
-      .whenPressed(new TimedDrive(0.3,0.5));
+    // new JoystickButton(xbox, Button.kA.value)
+    //   .whenPressed(new TimedDrive(0.3,0.5));
 
-    new JoystickButton(xbox, Button.kB.value)
-      .whenPressed(new TimedTurn(0.3,0.5));  
+    // new JoystickButton(xbox, Button.kB.value)
+    //   .whenPressed(new TimedTurn(0.3,0.5));  
 
-    new JoystickButton(xbox, Button.kX.value)  
-       .whenPressed(new DeployFingers()) 
-       .whenReleased(new RetractFingers());
+    new JoystickButton(xbox2, Button.kY.value) 
+      .whenPressed(new IncrementFeeder()) 
+      .whenReleased(new StopFeeder());
 
     new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
-      .whenPressed(new IncrementFeeder())
       .whenReleased(new SpinIntakeOff())
-      .whenReleased(new RetractIntake())
-      .whenReleased(new StopFeeder());
+      .whenReleased(new RetractIntake());
 
-    new JoystickButton(xbox, Button.kLeftBumper.value)
+    new JoystickButton(xbox2, Button.kLeftBumper.value)
       .whenPressed(new FlywheelShootOut())
       .whenReleased(new FlywheelShootOff())
       .whenPressed(new spinSushiOn()) 
       .whenReleased(new spinSushiOff());
+
+    new JoystickButton(xbox2, Button.kX.value)
+      .whenPressed(new DeployFingers())
+      .whenReleased(new RetractFingers());
 
 
 
