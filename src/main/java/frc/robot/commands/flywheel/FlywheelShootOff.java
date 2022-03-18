@@ -25,7 +25,7 @@ public class FlywheelShootOff extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.fw.shootOff();
-    RobotContainer.fd.stopFeed();
+    // RobotContainer.fd.stopFeed();
   }
 
   // Called once the command ends or is interrupted.

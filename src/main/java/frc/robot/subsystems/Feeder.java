@@ -12,7 +12,7 @@ public class Feeder extends SubsystemBase implements HardwareAdapter {
   }
 
   public void feedForward() {
-    feedMotor.set(ControlMode.PercentOutput, 1);
+    feedMotor.set(ControlMode.PercentOutput, 0.5);
   }
 
   public void stopFeed() {

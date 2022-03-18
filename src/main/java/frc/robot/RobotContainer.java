@@ -121,27 +121,29 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     //   .whenPressed(new TimedTurn(0.3,0.5));  
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new SpinIntakeIn())
+      .whenPressed(new IncrementFeeder())
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
+      .whenPressed(new IncrementFeeder())
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
-     new JoystickButton(xbox2, Button.kRightBumper.value) 
-      .whenPressed(new IncrementFeeder()) 
-      .whenReleased(new StopFeeder());
+    //  new JoystickButton(xbox2, Button.kRightBumper.value) 
+    //   .whenPressed(new IncrementFeeder()) 
+    //   .whenReleased(new StopFeeder());
 
-    new JoystickButton(xbox2, Button.kX.value)
-      .whenPressed(new DeployFingers())
-      .whenReleased(new RetractFingers());
+    // new JoystickButton(xbox2, Button.kX.value)
+    //   .whenPressed(new DeployFingers())
+    //   .whenReleased(new RetractFingers());
 
-    new JoystickButton(xbox2, Button.kLeftBumper.value)
-      .whenPressed(new FlywheelShootOut())
-      .whenReleased(new FlywheelShootOff())
-      .whenPressed(new spinSushiOn()) 
-      .whenReleased(new spinSushiOff());
+    // new JoystickButton(xbox2, Button.kLeftBumper.value)
+    //   .whenPressed(new FlywheelShootOut())
+    //   .whenReleased(new FlywheelShootOff())
+    //   .whenPressed(new spinSushiOn()) 
+    //   .whenReleased(new spinSushiOff());
 
     new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
@@ -152,8 +154,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new IncrementFeeder())
       .whenPressed(new FlywheelShootOut())
       .whenReleased(new spinSushiOff())
-      .whenReleased(new StopFeeder())
       .whenReleased(new FlywheelShootOff());
+
       
       // .whenPressed(new FlywheelShootPole())
 
