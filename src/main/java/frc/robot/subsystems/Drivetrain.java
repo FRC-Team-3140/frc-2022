@@ -23,7 +23,21 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
     rightEncoder.setPositionConversionFactor(kDriveTrainEncoderMetersPerPulse);
     leftEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
     rightEncoder.setVelocityConversionFactor(kDriveTrainEncoderLinearMetersPerSecondPerRPM);
-    rightSideMotors.setInverted(true);
+    rightMotor1.setInverted(true);
+    rightMotor1.setSmartCurrentLimit(60);
+    rightMotor1.burnFlash();
+    rightMotor2.setInverted(true);
+    rightMotor2.setSmartCurrentLimit(60);
+    rightMotor2.burnFlash();
+    rightMotor3.setInverted(true);
+    rightMotor3.setSmartCurrentLimit(60);
+    rightMotor3.burnFlash();
+    leftMotor1.setSmartCurrentLimit(60);
+    leftMotor1.burnFlash();
+    leftMotor2.setSmartCurrentLimit(60);
+    leftMotor2.burnFlash();
+    leftMotor3.setSmartCurrentLimit(60);
+    leftMotor3.burnFlash();
   }
 
   /**

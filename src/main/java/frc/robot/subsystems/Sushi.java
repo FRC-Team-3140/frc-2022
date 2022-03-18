@@ -6,10 +6,11 @@ import frc.robot.HardwareAdapter;
 public class Sushi extends SubsystemBase implements HardwareAdapter {
     public Sushi() {
         sushiMotor.setInverted(true);
+        sushiMotor.burnFlash();
     }
      
     public void sushiOn() {
-        sushiMotor.set(1);
+        sushiMotor.set(0.5);
     }
   
     public void sushiOff() {

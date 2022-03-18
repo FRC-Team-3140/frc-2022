@@ -16,12 +16,17 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   public final MotorControllerGroup flywheelMotors;
   public Flywheel() {
     flywheelMotor1.setInverted(true);
+    flywheelMotor1.burnFlash();
     flywheelMotor2.setInverted(false);
+    flywheelMotor2.burnFlash();
     flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
   }
    
-  public void shootOut() {
-    flywheelMotors.set(RobotContainer.xbox2.getLeftTriggerAxis());
+  // public void shootOut() {
+  //   flywheelMotors.set(RobotContainer.xbox2.getLeftTriggerAxis());
+  // }
+  public void shootOutPole(double modifier) {
+    flywheelMotors.set(0.7 + modifier);
   }
 
   public void shootOff() {

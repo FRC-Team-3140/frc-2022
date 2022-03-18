@@ -16,7 +16,7 @@ public class Drive extends CommandBase {
   public void execute() {
     double throttle = -RobotContainer.xbox.getSmoothedMainY();
     double heading = -RobotContainer.xbox.getSmoothedAltX();
-    heading*=0.7;// make it a little less sensitive
+    heading*=0.45;// make it a little less sensitive
     RobotContainer.dt.tankDrive(throttle - heading, throttle + heading);
   }
 
