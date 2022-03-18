@@ -16,6 +16,7 @@ import frc.robot.commands.drivetrain.TimedTurn;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
+import frc.robot.commands.flywheel.FlywheelShootOut;
 import frc.robot.commands.flywheel.FlywheelShootPole;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
@@ -75,8 +76,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
-  public static final Joystick xbox2 = new Joystick(xboxSecondaryDriver);
+  public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
+  public static final Joystick joystick = new Joystick(joystickDriver);
 
   private UsbCamera camera;
 
@@ -118,15 +119,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
     // new JoystickButton(xbox, Button.kB.value)
     //   .whenPressed(new TimedTurn(0.3,0.5));  
-
-    new JoystickButton(xbox2, Button.kY.value) //needs to be left trigger
-      .whenPressed(new IncrementFeeder()) 
-      .whenReleased(new StopFeeder());
-
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
-      .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kRightBumper.value)
@@ -134,25 +129,33 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
-    // new JoystickButton(xbox2, Button.kLeftBumper.value)
-    //   .whenPressed(new FlywheelShootOut())
-    //   .whenReleased(new FlywheelShootOff())
-    //   .whenPressed(new spinSushiOn()) 
-    //   .whenReleased(new spinSushiOff());
+     new JoystickButton(xbox2, Button.kRightBumper.value) 
+      .whenPressed(new IncrementFeeder()) 
+      .whenReleased(new StopFeeder());
 
-    new JoystickButton(xbox2, 1) //needs to be left bumper
+    new JoystickButton(xbox2, Button.kX.value)
       .whenPressed(new DeployFingers())
       .whenReleased(new RetractFingers());
 
+    new JoystickButton(xbox2, Button.kLeftBumper.value)
+      .whenPressed(new FlywheelShootOut())
+      .whenReleased(new FlywheelShootOff())
+      .whenPressed(new spinSushiOn()) 
+      .whenReleased(new spinSushiOff());
 
-    new JoystickButton(xbox2,2) 
+    new JoystickButton(joystick, 1)
+      .whenPressed(new DeployFingers())
+      .whenReleased(new RetractFingers());
+
+    new JoystickButton(joystick,2) 
       .whenPressed(new spinSushiOn()) 
       .whenPressed(new IncrementFeeder())
-      .whenPressed(new FlywheelShootPole())
+      .whenPressed(new FlywheelShootOut())
       .whenReleased(new spinSushiOff())
       .whenReleased(new StopFeeder())
       .whenReleased(new FlywheelShootOff());
-
+      
+      // .whenPressed(new FlywheelShootPole())
 
 
     
