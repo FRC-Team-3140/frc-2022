@@ -6,6 +6,8 @@ import frc.robot.commands.Intake.SpinIntakeOff;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber
 import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrain.MeterDrive;
+
 import static edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.DriveDistanceCommandGenerator;
@@ -75,8 +77,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
-  public static final Joystick xbox2 = new Joystick(xboxSecondaryDriver);
+  public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
+  public static final Joystick xbox2 = new Joystick(joystickDriver);
 
   private UsbCamera camera;
 
@@ -89,6 +91,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.setDefaultOption("Do Nothing Auto", new TimedDrive(0, 0));
     chooser.addOption("Timed Drive Short", new TimedDrive(0.5, 2));
     chooser.addOption("Timed Drive Long", new TimedDrive(0.5, 5));
+    chooser.addOption("1 Meter Drive", new MeterDrive(0.5, 1));
+    chooser.addOption("2 Meter Drive", new MeterDrive(0.5, 2));
     // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
   
@@ -126,14 +130,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
-      .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
-
+ 
     // new JoystickButton(xbox2, Button.kLeftBumper.value)
     //   .whenPressed(new FlywheelShootOut())
     //   .whenReleased(new FlywheelShootOff())
