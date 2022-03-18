@@ -132,7 +132,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
-      .whenReleased(new SpinIntakeOff())
       .whenReleased(new RetractIntake());
 
     // new JoystickButton(xbox2, Button.kLeftBumper.value)
@@ -141,9 +140,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     //   .whenPressed(new spinSushiOn()) 
     //   .whenReleased(new spinSushiOff());
 
-    // new JoystickButton(xbox2, Button.kX.value) //needs to be left bumper
-    //   .whenPressed(new DeployFingers())
-    //   .whenReleased(new RetractFingers());
+    new JoystickButton(xbox2, 1) //needs to be left bumper
+      .whenPressed(new DeployFingers())
+      .whenReleased(new RetractFingers());
 
 
     new JoystickButton(xbox2,2) 
