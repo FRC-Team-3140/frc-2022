@@ -6,6 +6,8 @@ import frc.robot.commands.Intake.SpinIntakeOff;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber
 import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrain.MeterDrive;
+
 import static edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.commands.drivetrain.DriveDistanceCommandGenerator;
@@ -90,6 +92,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.setDefaultOption("Do Nothing Auto", new TimedDrive(0, 0));
     chooser.addOption("Timed Drive Short", new TimedDrive(0.25, 2));
     chooser.addOption("Timed Drive Long", new TimedDrive(0.5, 5));
+    chooser.addOption("1 Meter Drive", new MeterDrive(0.5, 1));
+    chooser.addOption("2 Meter Drive", new MeterDrive(0.5, 2));
     // chooser.addOption("Do Nothing", ag.getDoNothingAuto());
 
   
