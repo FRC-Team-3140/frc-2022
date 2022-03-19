@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+/*package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
@@ -31,3 +31,4 @@ public class Climber extends SubsystemBase implements HardwareAdapter {
     // This method will be called once per scheduler run
   }
 }  
+*/
