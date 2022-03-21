@@ -32,10 +32,13 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter, Consta
     rightMotor3.setInverted(true);
     rightMotor3.setSmartCurrentLimit(60);
     rightMotor3.burnFlash();
+    leftMotor1.setInverted(false);
     leftMotor1.setSmartCurrentLimit(60);
     leftMotor1.burnFlash();
+    leftMotor2.setInverted(false);
     leftMotor2.setSmartCurrentLimit(60);
     leftMotor2.burnFlash();
+    leftMotor3.setInverted(false);
     leftMotor3.setSmartCurrentLimit(60);
     leftMotor3.burnFlash();
   }
