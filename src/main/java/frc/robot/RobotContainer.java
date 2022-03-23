@@ -3,16 +3,16 @@ package frc.robot;
 import frc.robot.commands.auto.DoNothingAuto;
 import frc.robot.commands.auto.TaxiPreload;
 import frc.robot.commands.drivetrain.TimedDrive;
+import frc.robot.commands.Intake.SpinIntakeIn;
 // import frc.robot.commands.drivetrain.TimedTurn;
 // import frc.robot.commands.drivetrain.MeterDrive;
 
-import frc.robot.commands.Intake.SpinIntakeIn;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 
 //import frc.robot.commands.climber.ClimberOff;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber
 
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -77,15 +77,16 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   public RobotContainer() {
     camera = CameraServer.startAutomaticCapture();
-    camera.setFPS(30);
+    camera.setFPS(20);
     camera.setResolution(320, 240);
 
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
+    chooser.addOption("TD: 2s", new TimedDrive(0.25, 2));
     chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
-    chooser.addOption("Drive to LP", new TimedDrive(0.25, 2)); //maybe 1s instead of 1.5; check tonight
+    chooser.addOption("Drive to LP", new TimedDrive(0.25, 2));
     chooser.addOption("Taxi & Preload", new TaxiPreload());
 
 
@@ -115,26 +116,18 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new TaxiPreload());
  
       new JoystickButton(joystick, 1)
-      // .whenPressed(new DeployFingers())
-      // .whenReleased(new RetractFingers());
-      .whenPressed(new spinSushiOn()) 
-      .whenReleased(new spinSushiOff())
-      .whenHeld(new FlywheelShootOut());
-
-
-      
-      new JoystickButton(joystick,2) 
       .whenPressed(new DeployFingers())
       .whenReleased(new RetractFingers());
-      // .whenPressed(new FlywheelShootOut())
-      // .whenReleased(new FlywheelShootOff());
+      // .whenPressed(new spinSushiOn()) 
+      // .whenReleased(new spinSushiOff())
+      // .whenHeld(new FlywheelShootOut())
+      
+      new JoystickButton(joystick,2) 
+      .whenPressed(new spinSushiOn()) 
+      .whenReleased(new spinSushiOff());
+      // .whenHeld(new FlywheelShootOut())
 
 
-
-  
-      // new JoystickButton(xbox2, Button.kX.value)
-      //   .whenPressed(new DeployFingers())
-      //   .whenReleased(new RetractFingers());
 
     
     /* Climber

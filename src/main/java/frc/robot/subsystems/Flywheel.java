@@ -38,6 +38,22 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
     flywheelMotors.set(-RobotContainer.joystick.getY());
   }
 
+  public void shootLow() {
+    flywheelMotors.set(0.25);
+  }
+
+  public void shootMed() {
+    flywheelMotors.set(0.5);
+  }
+
+  public void shootHigh() {
+    flywheelMotors.set(0.75);
+  }
+
+  public void shootHighest() {
+    flywheelMotors.set(1);
+  }
+
   public void shootOff() {
     flywheelMotors.set(0);
   }
