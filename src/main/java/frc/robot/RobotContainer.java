@@ -7,6 +7,7 @@ import frc.robot.commands.drivetrain.TimedDrive;
 // import frc.robot.commands.drivetrain.MeterDrive;
 
 import frc.robot.commands.Intake.SpinIntakeIn;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 
 //import frc.robot.commands.climber.ClimberOff;
 //import frc.robot.commands.climber.ExtendClimber;
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 // import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -36,6 +38,7 @@ import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
 
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Sushi;
@@ -53,23 +56,15 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   public static final Drivetrain dt = new Drivetrain();
   public static final Pneumatics pn = new Pneumatics();
-  // public static final Climber cl = new Climber();
+  public static final Climber cl = new Climber();
   public static final Intake in = new Intake();
   public static final Flywheel fw = new Flywheel();
   public static final Feeder fd = new Feeder();
   public static final Sushi su = new Sushi();
   // public static final Hood hd = new Hood();
-//  public static final Turret tr = new Turret();
+  // public static final Turret tr = new Turret();
   
-  // e.x. AutoGenerator uses Drivetrain classes, so it must be made after drivetrain
 
-  // By creating an AutoGenerator object
-  // We are effectively importing all of the .json trajectory files on robot
-  // startup.
-  // This is because the AutoGenerator object is made on robot init and so everything
-  // .json file is loaded on robot init as well. This saves time during auto as .json file
-  // loading can take some time, and this time would normally be wasted with the robot just 
-  // sitting still during auto.
   // public static final AutoGenerator ag = new AutoGenerator();
   private static final SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -85,13 +80,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     camera.setFPS(30);
     camera.setResolution(320, 240);
 
-   // chooser.setName("Please Select and Auto"); // (this works; find alternatives)
+
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
-    chooser.addOption("TD: 2s", new TimedDrive(0.25, 2));
-    chooser.addOption("TD: 5s", new TimedDrive(0.5, 5));
+    chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
+    chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
+    chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
+    chooser.addOption("Drive to LP", new TimedDrive(0.25, 2)); //maybe 1s instead of 1.5; check tonight
     chooser.addOption("Taxi & Preload", new TaxiPreload());
-    // chooser.addOption("1 Meter Drive", new MeterDrive(0.5, 1));
-    // chooser.addOption("2 Meter Drive", new MeterDrive(0.5, 2));
 
 
     Shuffleboard.getTab("Selector").add(chooser);
@@ -101,53 +96,45 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   }
 
   private void configureButtonBindings() {
+
     // Primary Driver Controls
 
-    // new JoystickButton(xbox, Button.kA.value)
-    //   .whenPressed(new TimedDrive(0.3,0.5));
-
-    // new JoystickButton(xbox, Button.kB.value)
-    //   .whenPressed(new TimedTurn(0.3,0.5));  
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new SpinIntakeIn())
-      .whenPressed(new IncrementFeeder())
+      .whenPressed(new IncrementFeeder()) 
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
-      .whenPressed(new IncrementFeeder())
+      .whenPressed(new IncrementFeeder()) 
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
-    //  new JoystickButton(xbox2, Button.kRightBumper.value) 
-    //   .whenPressed(new IncrementFeeder()) 
-    //   .whenReleased(new StopFeeder());
-
-    // new JoystickButton(xbox2, Button.kX.value)
-    //   .whenPressed(new DeployFingers())
-    //   .whenReleased(new RetractFingers());
-
-    // new JoystickButton(xbox2, Button.kLeftBumper.value)
-    //   .whenPressed(new FlywheelShootOut())
-    //   .whenReleased(new FlywheelShootOff())
-    //   .whenPressed(new spinSushiOn()) 
-    //   .whenReleased(new spinSushiOff());
-
-    new JoystickButton(joystick, 1)
-      .whenPressed(new DeployFingers())
-      .whenReleased(new RetractFingers());
-
-    new JoystickButton(joystick,2) 
+      new JoystickButton(xbox, Button.kX.value)
+      .whenPressed(new TaxiPreload());
+ 
+      new JoystickButton(joystick, 1)
+      // .whenPressed(new DeployFingers())
+      // .whenReleased(new RetractFingers());
       .whenPressed(new spinSushiOn()) 
-      .whenPressed(new IncrementFeeder())
-      .whenPressed(new FlywheelShootOut())
       .whenReleased(new spinSushiOff())
-      .whenReleased(new FlywheelShootOff());
+      .whenHeld(new FlywheelShootOut());
+
 
       
-      // .whenPressed(new FlywheelShootPole())
+      new JoystickButton(joystick,2) 
+      .whenPressed(new DeployFingers())
+      .whenReleased(new RetractFingers());
+      // .whenPressed(new FlywheelShootOut())
+      // .whenReleased(new FlywheelShootOff());
 
+
+
+  
+      // new JoystickButton(xbox2, Button.kX.value)
+      //   .whenPressed(new DeployFingers())
+      //   .whenReleased(new RetractFingers());
 
     
     /* Climber
@@ -160,8 +147,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   private void configureDefaultCommands() {
     dt.setDefaultCommand(new Drive());
-    
-   // tr.setDefaultCommand(new AngleWithTurret());
   }
 
   public Command getAutonomousCommand() {
