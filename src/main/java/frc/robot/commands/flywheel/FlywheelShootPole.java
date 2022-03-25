@@ -13,7 +13,6 @@ import frc.robot.RobotContainer;
 public class FlywheelShootPole extends CommandBase {
   public FlywheelShootPole() {
     addRequirements(RobotContainer.fw);
-    addRequirements(RobotContainer.fd);
   }
 
   // Called when the command is initially scheduled.

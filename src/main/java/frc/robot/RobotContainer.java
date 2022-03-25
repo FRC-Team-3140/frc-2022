@@ -2,6 +2,8 @@ package frc.robot;
 
 import frc.robot.commands.auto.DoNothingAuto;
 import frc.robot.commands.auto.TaxiPreload;
+import frc.robot.commands.auto.TaxiPreload2;
+import frc.robot.commands.auto.preloadandone;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.Intake.SpinIntakeIn;
 // import frc.robot.commands.drivetrain.TimedTurn;
@@ -26,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
+import frc.robot.commands.feeder.StopFeeder;
 // import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootOut;
@@ -88,6 +91,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
     chooser.addOption("Drive to LP", new TimedDrive(0.25, 2));
     chooser.addOption("Taxi & Preload", new TaxiPreload());
+    chooser.addOption("2 Preload", new TaxiPreload2());
+    chooser.addOption("Preload & One", new preloadandone());
 
 
     Shuffleboard.getTab("Selector").add(chooser);
@@ -102,18 +107,17 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
     new JoystickButton(xbox, Button.kLeftBumper.value)
       .whenPressed(new SpinIntakeIn())
-      .whenPressed(new IncrementFeeder()) 
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kRightBumper.value)
       .whenPressed(new SpinIntakeIn())
-      .whenPressed(new IncrementFeeder()) 
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
       new JoystickButton(xbox, Button.kX.value)
-      .whenPressed(new TaxiPreload());
+      .whenPressed(new IncrementFeeder())
+      .whenReleased(new StopFeeder());
  
       new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
@@ -124,8 +128,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       
       new JoystickButton(joystick,2) 
       .whenPressed(new spinSushiOn()) 
+      .whenHeld(new FlywheelShootOut())
       .whenReleased(new spinSushiOff());
-      // .whenHeld(new FlywheelShootOut())
 
 
 
@@ -139,6 +143,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   }
 
   private void configureDefaultCommands() {
+    // fd.setDefaultCommand(new IncrementFeeder(false));
     dt.setDefaultCommand(new Drive());
   }
 
