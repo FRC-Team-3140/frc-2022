@@ -35,8 +35,10 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   }
   
   public void shootOut() {
+    // when set on "preload and one" 0.45 is the speed we need to be at
+    //when set on "taxi and preload" 0.4 is the speed we need to be at
     // flywheelMotors.set(-RobotContainer.joystick.getY());
-    flywheelMotors.set(0.45);
+    flywheelMotors.set(0.4);
   }
 
   public void shootLow() {

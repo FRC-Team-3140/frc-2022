@@ -115,9 +115,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
-      new JoystickButton(xbox, Button.kX.value)
-      .whenPressed(new IncrementFeeder())
-      .whenReleased(new StopFeeder());
+      // new JoystickButton(xbox, Button.kX.value)
+      // .whenPressed(new IncrementFeeder())
+      // .whenReleased(new StopFeeder());
  
       new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
@@ -128,7 +128,10 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       
       new JoystickButton(joystick,2) 
       .whenPressed(new spinSushiOn()) 
-      .whenHeld(new FlywheelShootOut())
+      .whenPressed(new IncrementFeeder())
+      .whenPressed(new FlywheelShootOut())
+      .whenReleased(new StopFeeder())
+      .whenReleased(new FlywheelShootOff())
       .whenReleased(new spinSushiOff());
 
 
