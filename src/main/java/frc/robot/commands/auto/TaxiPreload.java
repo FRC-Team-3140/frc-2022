@@ -8,7 +8,7 @@ import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShootOut;
+import frc.robot.commands.flywheel.FlywheelShoot45;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.sushiKicker.spinSushiOff;
@@ -17,7 +17,7 @@ import frc.robot.commands.sushiKicker.spinSushiOn;
 public class TaxiPreload extends SequentialCommandGroup {
   public TaxiPreload() {
     addCommands(
-     new FlywheelShootOut(),
+     new FlywheelShoot45(),
      new TimedDrive(-0.25, 2), 
      new WaitCommand(1),
      new IncrementFeeder(),

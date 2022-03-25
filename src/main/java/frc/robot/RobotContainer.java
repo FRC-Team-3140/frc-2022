@@ -31,8 +31,12 @@ import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 // import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShootOut;
-// import frc.robot.commands.flywheel.FlywheelShootPole;
+import frc.robot.commands.flywheel.FlywheelShoot100;
+import frc.robot.commands.flywheel.FlywheelShoot75;
+import frc.robot.commands.flywheel.FlywheelShoot50;
+import frc.robot.commands.flywheel.FlywheelShoot45;
+import frc.robot.commands.flywheel.FlywheelShoot40;
+import frc.robot.commands.flywheel.FlywheelShoot25;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -73,7 +77,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
+  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
   public static final Joystick joystick = new Joystick(joystickDriver);
 
   private UsbCamera camera;
@@ -114,25 +118,39 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new SpinIntakeIn())
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
-
-      // new JoystickButton(xbox, Button.kX.value)
-      // .whenPressed(new IncrementFeeder())
-      // .whenReleased(new StopFeeder());
  
       new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
       .whenReleased(new RetractFingers());
-      // .whenPressed(new spinSushiOn()) 
-      // .whenReleased(new spinSushiOff())
-      // .whenHeld(new FlywheelShootOut())
       
-      new JoystickButton(joystick,2) 
+      new JoystickButton(joystick, 2) 
       .whenPressed(new spinSushiOn()) 
       .whenPressed(new IncrementFeeder())
-      .whenPressed(new FlywheelShootOut())
       .whenReleased(new StopFeeder())
-      .whenReleased(new FlywheelShootOff())
       .whenReleased(new spinSushiOff());
+
+      //joystick numbers will need to be corrected to bottom buttons; just wanted it there for testing
+      new JoystickButton(joystick, 3)
+      .whenPressed(new FlywheelShoot100());
+
+      new JoystickButton(joystick, 4)
+      .whenPressed(new FlywheelShoot75());
+
+      new JoystickButton(joystick, 5)
+      .whenPressed(new FlywheelShoot50());
+
+      new JoystickButton(joystick, 6)
+      .whenPressed(new FlywheelShoot25());
+
+      new JoystickButton(joystick, 7)
+      .whenPressed(new FlywheelShoot45());
+
+      new JoystickButton(joystick, 8)
+      .whenPressed(new FlywheelShoot40());
+
+      new JoystickButton(joystick, 9)
+      .whenPressed(new FlywheelShootOff());
+
 
 
 

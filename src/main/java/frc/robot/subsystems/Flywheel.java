@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
 import frc.robot.RobotContainer;
-// import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -27,33 +26,31 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
     flywheelMotors = new MotorControllerGroup(flywheelMotor1, flywheelMotor2);
   }
    
-  // public void shootOut() {
-  //   flywheelMotors.set(RobotContainer.xbox2.getLeftTriggerAxis());
+  // public void shootOutPole(double modifier) {
+  //   flywheelMotors.set(0.7 + modifier*.3);
   // }
-  public void shootOutPole(double modifier) {
-    flywheelMotors.set(0.7 + modifier*.3);
-  }
   
-  public void shootOut() {
-    // when set on "preload and one" 0.45 is the speed we need to be at
-    //when set on "taxi and preload" 0.4 is the speed we need to be at
-    // flywheelMotors.set(-RobotContainer.joystick.getY());
+  public void shoot45() {
+    flywheelMotors.set(0.45);
+  }
+
+  public void shoot40() {
     flywheelMotors.set(0.4);
   }
 
-  public void shootLow() {
+  public void shoot25() {
     flywheelMotors.set(0.25);
   }
 
-  public void shootMed() {
+  public void shoot50() {
     flywheelMotors.set(0.5);
   }
 
-  public void shootHigh() {
+  public void shoot75() {
     flywheelMotors.set(0.75);
   }
 
-  public void shootHighest() {
+  public void shoot100() {
     flywheelMotors.set(1);
   }
 

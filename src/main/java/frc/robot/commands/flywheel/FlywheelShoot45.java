@@ -6,12 +6,12 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.flywheel;
-
+// import frc.robot.HardwareAdapter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class FlywheelShootOut extends CommandBase {
-  public FlywheelShootOut() {
+public class FlywheelShoot45 extends CommandBase {
+  public FlywheelShoot45() {
     addRequirements(RobotContainer.fw);
   }
 
@@ -23,7 +23,7 @@ public class FlywheelShootOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.fw.shootOut();
+    RobotContainer.fw.shoot45();
   }
 
   // Called once the command ends or is interrupted.
