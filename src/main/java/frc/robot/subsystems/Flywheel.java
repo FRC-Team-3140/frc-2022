@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.HardwareAdapter;
-import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -57,6 +56,7 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   public void shootOff() {
     flywheelMotors.set(0);
   }
+  
 
   @Override
   public void periodic() {

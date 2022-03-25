@@ -22,8 +22,8 @@ import frc.robot.commands.pneumatics.Intake.RetractIntake;
 import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
 
-public class preloadandone extends SequentialCommandGroup {
-  public preloadandone() {
+public class TwoBallAuto extends SequentialCommandGroup {
+  public TwoBallAuto() {
     addCommands(
         new DeployIntake(),
         new SpinIntakeIn(),
@@ -31,7 +31,6 @@ public class preloadandone extends SequentialCommandGroup {
         new TimedDrive(0.25, 2),
         new WaitCommand(0.25),
         new RetractIntake(),
-        // FlywheelMotors.set(0.45),
         new FlywheelShoot45(),
         new WaitCommand(0.5),
         new WaitCommand(0.5),

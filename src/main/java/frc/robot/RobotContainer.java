@@ -1,9 +1,9 @@
 package frc.robot;
 
 import frc.robot.commands.auto.DoNothingAuto;
-import frc.robot.commands.auto.TaxiPreload;
+import frc.robot.commands.auto.TwoBallAuto;
 import frc.robot.commands.auto.TaxiPreload2;
-import frc.robot.commands.auto.preloadandone;
+import frc.robot.commands.auto.OneBallAuto;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.Intake.SpinIntakeIn;
 // import frc.robot.commands.drivetrain.TimedTurn;
@@ -90,13 +90,12 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
     chooser.addOption("TD: 2s", new TimedDrive(0.25, 2));
-    chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
+    chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
-    chooser.addOption("Drive to LP", new TimedDrive(0.25, 2));
-    chooser.addOption("Taxi & Preload", new TaxiPreload());
-    chooser.addOption("2 Preload", new TaxiPreload2());
-    chooser.addOption("Preload & One", new preloadandone());
+    chooser.addOption("2 Preloaded", new TaxiPreload2());
+    chooser.addOption("1 Ball Auto", new OneBallAuto());
+    chooser.addOption("2 Ball Auto", new TwoBallAuto());
 
 
     Shuffleboard.getTab("Selector").add(chooser);
@@ -114,10 +113,10 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
-      new JoystickButton(xbox, Button.kRightBumper.value)
-      .whenPressed(new SpinIntakeIn())
-      .whenPressed(new DeployIntake())
-      .whenReleased(new RetractIntake());
+      // new JoystickButton(xbox, Button.kRightBumper.value)
+      // .whenPressed(new SpinIntakeIn())
+      // .whenPressed(new DeployIntake())
+      // .whenReleased(new RetractIntake());
  
       new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
@@ -129,30 +128,31 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenReleased(new StopFeeder())
       .whenReleased(new spinSushiOff());
 
-      //joystick numbers will need to be corrected to bottom buttons; just wanted it there for testing
-      new JoystickButton(joystick, 3)
+      new JoystickButton(joystick, 8)
       .whenPressed(new FlywheelShoot100());
-
-      new JoystickButton(joystick, 4)
-      .whenPressed(new FlywheelShoot75());
-
-      new JoystickButton(joystick, 5)
-      .whenPressed(new FlywheelShoot50());
-
-      new JoystickButton(joystick, 6)
-      .whenPressed(new FlywheelShoot25());
+       
 
       new JoystickButton(joystick, 7)
-      .whenPressed(new FlywheelShoot45());
+      .whenPressed(new FlywheelShoot75());
+       
 
-      new JoystickButton(joystick, 8)
-      .whenPressed(new FlywheelShoot40());
+      new JoystickButton(joystick, 10)
+      .whenPressed(new FlywheelShoot50());       
 
       new JoystickButton(joystick, 9)
+      .whenPressed(new FlywheelShoot25());
+       
+
+      new JoystickButton(joystick, 12)
+      .whenPressed(new FlywheelShoot45());
+       
+
+      new JoystickButton(joystick, 11)
+      .whenPressed(new FlywheelShoot40());
+       
+
+      new JoystickButton(joystick, 5) //this number is probably going to need to change
       .whenPressed(new FlywheelShootOff());
-
-
-
 
     
     /* Climber

@@ -32,8 +32,7 @@ public class TaxiPreload2 extends SequentialCommandGroup {
      new RetractFingers(),
      new spinSushiOff(),
      new FlywheelShootOff(),
-     new StopFeeder(),
      new StopFeeder()
-   );
+     );
   }
 }

@@ -14,8 +14,8 @@ import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
 
-public class TaxiPreload extends SequentialCommandGroup {
-  public TaxiPreload() {
+public class OneBallAuto extends SequentialCommandGroup {
+  public OneBallAuto() {
     addCommands(
      new FlywheelShoot45(),
      new TimedDrive(-0.25, 2), 
@@ -28,9 +28,7 @@ public class TaxiPreload extends SequentialCommandGroup {
      new RetractFingers(),
      new spinSushiOff(),
      new FlywheelShootOff(),
-     new StopFeeder(),
      new StopFeeder()
-   );
+     );
   }
 }
-  
