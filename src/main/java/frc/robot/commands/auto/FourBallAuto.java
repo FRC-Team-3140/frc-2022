@@ -13,6 +13,7 @@ import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShoot45;
+import frc.robot.commands.flywheel.FlywheelShoot50;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -20,12 +21,11 @@ import frc.robot.commands.pneumatics.Intake.RetractIntake;
 import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
 
-public class TwoBallAuto extends SequentialCommandGroup {
-  public TwoBallAuto() {
+public class FourBallAuto extends SequentialCommandGroup {
+  public FourBallAuto() {
     addCommands(
         new DeployIntake(),
         new SpinIntakeIn(),
-        new IncrementFeeder(),
         new TimedDrive(0.25, 2),
         new WaitCommand(0.25),
         new RetractIntake(),
@@ -33,11 +33,32 @@ public class TwoBallAuto extends SequentialCommandGroup {
         new WaitCommand(0.5),
         new TimedTurn(0.25, 1.11),
         new spinSushiOn(),
+        new IncrementFeeder(),
+        new WaitCommand(1),
+        new DeployFingers(),
+        new WaitCommand(0.1),
+        new RetractFingers(),
         new WaitCommand(1),
         new DeployFingers(),
         new WaitCommand(0.5),
+        new StopFeeder(),
         new RetractFingers(),
-        new WaitCommand(1),
+        new TimedTurn(0.25, 0.95),
+        new DeployIntake(),
+        new SpinIntakeIn(),
+        new TimedDrive(0.25, 1.6),
+        new WaitCommand(2),
+        new RetractIntake(),
+        new TimedDrive(-0.25, 0.5),
+        new FlywheelShoot50(),
+        new TimedTurn(0.25, 1.3),
+        new spinSushiOn(),
+        new IncrementFeeder(),
+        new WaitCommand(0.5),
+        new DeployFingers(),
+        new WaitCommand(0.5),
+        new RetractFingers(),
+        new WaitCommand(0.5),
         new DeployFingers(),
         new WaitCommand(0.5),
         new RetractFingers(),

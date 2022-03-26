@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.commands.auto.DoNothingAuto;
 import frc.robot.commands.auto.TwoBallAuto;
 import frc.robot.commands.auto.TaxiPreload2;
+import frc.robot.commands.auto.ThreeBallAuto;
 import frc.robot.commands.auto.OneBallAuto;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.Intake.SpinIntakeIn;
@@ -96,6 +97,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("2 Preloaded", new TaxiPreload2());
     chooser.addOption("1 Ball Auto", new OneBallAuto());
     chooser.addOption("2 Ball Auto", new TwoBallAuto());
+    chooser.addOption("3 Ball Auto", new ThreeBallAuto());
 
 
     Shuffleboard.getTab("Selector").add(chooser);
