@@ -17,8 +17,12 @@ public class Pneumatics extends SubsystemBase  implements Constants, HardwareAda
     fingerSolenoid.set(v);
   }
 
-  public void setClimberState(Value v) {
+  public void setClimberLockState(Value v) {
     climberLockSolenoid.set(v);
+  }
+
+  public void setClimberState(Value v) {
+    climberSolenoid.set(v);
   }
 
   @Override

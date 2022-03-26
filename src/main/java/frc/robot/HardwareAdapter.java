@@ -6,7 +6,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+// import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 // import frc.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.SPI;
@@ -45,11 +45,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     //Sushi Kicker
     public final CANSparkMax sushiMotor = new CANSparkMax(11, MotorType.kBrushless);
-
-    //Climber
-    public final MotorController climberMotor1 = new CANSparkMax(13, MotorType.kBrushless);
-    public final MotorController climberMotor2 = new CANSparkMax(14, MotorType.kBrushless);
-    public final MotorControllerGroup climberMotors = new MotorControllerGroup(climberMotor1, climberMotor2);
 
     // Pnuematics
     public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);

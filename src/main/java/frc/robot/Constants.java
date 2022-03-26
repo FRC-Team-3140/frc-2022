@@ -79,7 +79,8 @@ public interface Constants {
 	public interface ElectricalPortConstants {
 		// Xbox Controllers
 		public static final int xboxPrimaryDriver = 0;
-		public static final int xboxSecondaryDriver = 1;
+		public static final int xboxSecondaryDriver = 2;
+		public static final int joystickDriver = 1;
 
 		// Other Can Bus
 		public final static int PDP = 0;

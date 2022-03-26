@@ -15,15 +15,15 @@ public class Climber extends SubsystemBase implements HardwareAdapter {
   }
 
   public void climberExtend() {
-    climberMotors.set(1);
+    // climberMotors.set(1);
   }
 
   public void climberRetract() {
-    climberMotors.set(-1);
+    // climberMotors.set(-1);
   }
 
   public void climberOff() {
-    climberMotors.set(0);
+    // climberMotors.set(0);
   }
 
   @Override
