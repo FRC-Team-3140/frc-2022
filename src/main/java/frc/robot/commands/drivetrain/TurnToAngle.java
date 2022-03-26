@@ -22,7 +22,13 @@ public class TurnToAngle extends CommandBase{
 
   @Override
   public void execute() {
-    RobotContainer.dt.tankDrive(-throttle, throttle);
+  double power = Math.max(Math.abs((this.angle - HardwareAdapter.navx.getYaw())/this.angle), 0.5);
+    if (this.angle>0){
+      RobotContainer.dt.tankDrive(throttle * power, -throttle * power);
+    } 
+    else {
+      RobotContainer.dt.tankDrive(-throttle * power, throttle * power); 
+    }
   } 
 
 

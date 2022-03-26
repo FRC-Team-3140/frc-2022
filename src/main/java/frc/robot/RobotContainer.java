@@ -2,6 +2,7 @@ package frc.robot;
 
 import frc.robot.commands.auto.DoNothingAuto;
 import frc.robot.commands.auto.TwoBallAuto;
+import frc.robot.commands.auto.testingTTA;
 import frc.robot.commands.auto.TaxiPreload2;
 import frc.robot.commands.auto.ThreeBallAuto;
 import frc.robot.commands.auto.OneBallAuto;
@@ -94,6 +95,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
     chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
+    chooser.addOption("Testing TTA", new testingTTA());
     chooser.addOption("2 Preloaded", new TaxiPreload2());
     chooser.addOption("1 Ball Auto", new OneBallAuto());
     chooser.addOption("2 Ball Auto", new TwoBallAuto());
