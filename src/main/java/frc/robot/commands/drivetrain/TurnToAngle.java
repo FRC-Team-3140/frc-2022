@@ -6,16 +6,17 @@ public class TurnToAngle extends CommandBase{
     private double throttle = 0;
     private double angle = 0;
     private double tolerance = 0;
-    private double startPoint;
+    private double minSpeed;
     private double currentAngle;
     private boolean reinit;
-    private boolean turningRight;
+    private boolean turningRight = false;
 
-    public TurnToAngle(double throttle, double angle, double tolerance, boolean reinit) {
+    public TurnToAngle(double throttle, double angle, double tolerance, boolean reinit, double minSpeed) {
     this.throttle = throttle;
     this.angle = angle;
     this.tolerance = tolerance;
     this.reinit = reinit;
+    this.minSpeed = minSpeed;
 
     addRequirements(RobotContainer.dt);
   }
@@ -32,7 +33,7 @@ public class TurnToAngle extends CommandBase{
       }
     }
     else{
-      if (this.angle-this.currentAngle>0){
+      if (this.angle>this.currentAngle){
         this.turningRight=true;
       }
       else {
@@ -43,15 +44,17 @@ public class TurnToAngle extends CommandBase{
   
   @Override
   public void execute() {
-    //modulus to keep in 0-360 range then shift back to -180 to 180 range with the subtraction
     this.currentAngle = HardwareAdapter.navx.getYaw();
-    double power = Math.max(Math.abs((this.angle - this.currentAngle)/this.angle), 0.5);
-    if (turningRight=true){
+    double power = Math.max(Math.abs((this.angle - this.currentAngle)/this.angle), minSpeed);
+    if (this.turningRight==true){
       RobotContainer.dt.tankDrive(throttle * power, -throttle * power);
     }
-    else{
+   else {
       RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
     }
+    // else{
+    //   RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
+    // }
   } 
 
 
