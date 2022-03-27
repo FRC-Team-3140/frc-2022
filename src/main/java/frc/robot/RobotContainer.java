@@ -53,7 +53,7 @@ import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Sushi;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
-
+import frc.robot.Constants;
 import frc.libs.*;
 
 public class RobotContainer implements Constants.ElectricalPortConstants {
@@ -87,7 +87,10 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public RobotContainer() {
     camera = CameraServer.startAutomaticCapture();
     camera.setFPS(30);
-    camera.setResolution(640, 480);
+    camera.setResolution(
+      Constants.GeneralConstants.RobotPhysicalConstants.x_resolution, 
+      Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
+    );
 
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());

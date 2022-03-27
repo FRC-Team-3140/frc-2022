@@ -25,6 +25,7 @@ public interface Constants {
 		public interface PhysicalConstants {
 			public final double heightDeltaFromShooterReleaseToPowerPortCenter = 0; // m
 			// Field dimensions, etc.
+			
 		}
 
 		// Use meters, seconds, degrees (180deg to -180deg), and volts for all motion profiling based units.
@@ -36,6 +37,8 @@ public interface Constants {
 			public static final double shooterCenterFromRobotRearWithBumpers = 0.734;
 						
 			// Camera offsets
+			public static final int x_resolution = 640;
+			public static final int y_resolution = 480;
 
 			// Gear Ratio's  (these will need to be updated to the 2022 counts)
 			public static final double driveTrainGearRatio = 7.88;
