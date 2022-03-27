@@ -86,8 +86,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   public RobotContainer() {
     camera = CameraServer.startAutomaticCapture();
-    camera.setFPS(20);
-    camera.setResolution(320, 240);
+    camera.setFPS(30);
+    camera.setResolution(640, 480);
 
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
