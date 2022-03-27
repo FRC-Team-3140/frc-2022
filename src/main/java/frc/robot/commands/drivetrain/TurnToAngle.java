@@ -9,7 +9,7 @@ public class TurnToAngle extends CommandBase{
     private double minSpeed;
     private double currentAngle;
     private boolean reinit;
-    private boolean turningRight = false;
+    private boolean turningRight;
 
     public TurnToAngle(double throttle, double angle, double tolerance, boolean reinit, double minSpeed) {
     this.throttle = throttle;
@@ -25,20 +25,12 @@ public class TurnToAngle extends CommandBase{
   public void initialize() {
     if (this.reinit==true){
       HardwareAdapter.navx.zeroYaw();
-      if (this.angle>0){
-        this.turningRight=true;
-      }
-      else {
-        this.turningRight=false;
-      }
     }
-    else{
-      if (this.angle>this.currentAngle){
-        this.turningRight=true;
-      }
-      else {
-        this.turningRight=false;
-      }
+    if (this.angle>0){
+      this.turningRight=true;
+    }
+    else {
+      this.turningRight=false;
     }
   }
   
@@ -46,15 +38,18 @@ public class TurnToAngle extends CommandBase{
   public void execute() {
     this.currentAngle = HardwareAdapter.navx.getYaw();
     double power = Math.max(Math.abs((this.angle - this.currentAngle)/this.angle), minSpeed);
-    if (this.turningRight==true){
-      RobotContainer.dt.tankDrive(throttle * power, -throttle * power);
+    if (this.currentAngle>this.angle){
+      this.turningRight=true;
     }
-   else {
+    else {
+      this.turningRight=false;
+    }
+    if (this.turningRight==true){
       RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
     }
-    // else{
-    //   RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
-    // }
+   else {
+      RobotContainer.dt.tankDrive(throttle * power, -throttle * power);
+    }
   } 
 
 

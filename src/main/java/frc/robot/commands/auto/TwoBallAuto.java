@@ -1,6 +1,7 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitForChildren;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -9,6 +10,7 @@ import frc.robot.Constants;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
+import frc.robot.commands.drivetrain.TurnToAngle;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
@@ -26,12 +28,14 @@ public class TwoBallAuto extends SequentialCommandGroup {
         new DeployIntake(),
         new SpinIntakeIn(),
         new IncrementFeeder(),
-        new TimedDrive(0.25, 2),
+        new TimedDrive(0.25, 2.25),
         new WaitCommand(0.25),
         new RetractIntake(),
         new FlywheelShoot45(),
         new WaitCommand(0.5),
-        new TimedTurn(0.25, 1.11),
+        // new TimedTurn(0.25, 1.39),
+        new TurnToAngle(0.25, 173, 20, true, 0.2),
+        new TurnToAngle(0.25, 173, 1, false, 0.2),
         new spinSushiOn(),
         new WaitCommand(1),
         new DeployFingers(),
