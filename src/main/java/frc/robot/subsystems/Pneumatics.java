@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.HardwareAdapter;
 
-public class Pneumatics extends SubsystemBase  implements Constants, HardwareAdapter {
+public class Pneumatics extends SubsystemBase implements Constants, HardwareAdapter {
   public Pneumatics() {
   }
 

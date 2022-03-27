@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class SpinIntakeOff extends CommandBase {
-
   public SpinIntakeOff() {
     addRequirements(RobotContainer.in);
   }

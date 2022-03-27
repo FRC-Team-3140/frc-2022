@@ -1,10 +1,8 @@
 package frc.libs;
 
-// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Constants;
 
-public final class SmoothXboxController extends XboxController implements Constants.GeneralConstants {
+public final class SmoothXboxController extends XboxController {
 
 	public SmoothXboxController(int port) {
 		super(port);

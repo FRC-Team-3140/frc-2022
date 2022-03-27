@@ -11,7 +11,6 @@ import frc.robot.commands.Intake.SpinIntakeIn;
 // import frc.robot.commands.drivetrain.TimedTurn;
 // import frc.robot.commands.drivetrain.MeterDrive;
 
-
 //import frc.robot.commands.climber.ClimberOff;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber
@@ -56,12 +55,13 @@ import frc.robot.subsystems.Pneumatics;
 
 import frc.libs.*;
 
-public class RobotContainer implements Constants.ElectricalPortConstants {
+public class RobotContainer implements Constants {
   // The robot's subsystems and OI devices
- 
+
   // Subsystems and class objects used elsewhere in the code
-  //  are declared here.
-  // All classes required by any class instantiated here must, be instantiated before the instatiated class.
+  // are declared here.
+  // All classes required by any class instantiated here must, be instantiated
+  // before the instatiated class.
 
   public static final Drivetrain dt = new Drivetrain();
   public static final Pneumatics pn = new Pneumatics();
@@ -70,16 +70,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public static final Flywheel fw = new Flywheel();
   public static final Feeder fd = new Feeder();
   public static final Sushi su = new Sushi();
-  // public static final Hood hd = new Hood();
-  // public static final Turret tr = new Turret();
-  
 
-  // public static final AutoGenerator ag = new AutoGenerator();
   private static final SendableChooser<Command> chooser = new SendableChooser<>();
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
+  // public static final SmoothXboxController xbox2 = new
+  // SmoothXboxController(xboxSecondaryDriver);
   public static final Joystick joystick = new Joystick(joystickDriver);
 
   private UsbCamera camera;
@@ -88,7 +85,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     camera = CameraServer.startAutomaticCapture();
     camera.setFPS(20);
     camera.setResolution(320, 240);
-
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
     chooser.addOption("TD: 2s", new TimedDrive(0.25, 2));
@@ -101,7 +97,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("2 Ball Auto", new TwoBallAuto());
     chooser.addOption("3 Ball Auto", new ThreeBallAuto());
 
-
     Shuffleboard.getTab("Selector").add(chooser);
 
     configureButtonBindings();
@@ -113,58 +108,53 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // Primary Driver Controls
 
     new JoystickButton(xbox, Button.kLeftBumper.value)
-      .whenPressed(new SpinIntakeIn())
-      .whenPressed(new DeployIntake())
-      .whenReleased(new RetractIntake());
+        .whenPressed(new SpinIntakeIn())
+        .whenPressed(new DeployIntake())
+        .whenReleased(new RetractIntake());
 
-      // new JoystickButton(xbox, Button.kRightBumper.value)
-      // .whenPressed(new SpinIntakeIn())
-      // .whenPressed(new DeployIntake())
-      // .whenReleased(new RetractIntake());
- 
-      new JoystickButton(joystick, 1)
-      .whenPressed(new DeployFingers())
-      .whenReleased(new RetractFingers());
-      
-      new JoystickButton(joystick, 2) 
-      .whenPressed(new spinSushiOn()) 
-      .whenPressed(new IncrementFeeder())
-      .whenReleased(new StopFeeder())
-      .whenReleased(new spinSushiOff());
+    // new JoystickButton(xbox, Button.kRightBumper.value)
+    // .whenPressed(new SpinIntakeIn())
+    // .whenPressed(new DeployIntake())
+    // .whenReleased(new RetractIntake());
 
-      new JoystickButton(joystick, 8)
-      .whenPressed(new FlywheelShoot100());
-       
+    new JoystickButton(joystick, 1)
+        .whenPressed(new DeployFingers())
+        .whenReleased(new RetractFingers());
 
-      new JoystickButton(joystick, 7)
-      .whenPressed(new FlywheelShoot75());
-       
+    new JoystickButton(joystick, 2)
+        .whenPressed(new spinSushiOn())
+        .whenPressed(new IncrementFeeder())
+        .whenReleased(new StopFeeder())
+        .whenReleased(new spinSushiOff());
 
-      new JoystickButton(joystick, 10)
-      .whenPressed(new FlywheelShoot50());       
+    new JoystickButton(joystick, 8)
+        .whenPressed(new FlywheelShoot100());
 
-      new JoystickButton(joystick, 9)
-      .whenPressed(new FlywheelShoot25());
-       
+    new JoystickButton(joystick, 7)
+        .whenPressed(new FlywheelShoot75());
 
-      new JoystickButton(joystick, 12)
-      .whenPressed(new FlywheelShoot45());
-       
+    new JoystickButton(joystick, 10)
+        .whenPressed(new FlywheelShoot50());
 
-      new JoystickButton(joystick, 11)
-      .whenPressed(new FlywheelShoot40());
-       
+    new JoystickButton(joystick, 9)
+        .whenPressed(new FlywheelShoot25());
 
-      new JoystickButton(joystick, 5) //this number is probably going to need to change
-      .whenPressed(new FlywheelShootOff());
+    new JoystickButton(joystick, 12)
+        .whenPressed(new FlywheelShoot45());
 
-    
-    /* Climber
-    xbox2.dpadUp.whenPressed(new ExtendClimber());
-    xbox2.dpadUp.whenReleased(new ClimberOff());
-    xbox2.dpadDown.whenReleased(new ClimberOff());
-    xbox2.dpadDown.whenPressed(new RetractClimber());
-    */
+    new JoystickButton(joystick, 11)
+        .whenPressed(new FlywheelShoot40());
+
+    new JoystickButton(joystick, 5) // this number is probably going to need to change
+        .whenPressed(new FlywheelShootOff());
+
+    /*
+     * Climber
+     * xbox2.dpadUp.whenPressed(new ExtendClimber());
+     * xbox2.dpadUp.whenReleased(new ClimberOff());
+     * xbox2.dpadDown.whenReleased(new ClimberOff());
+     * xbox2.dpadDown.whenPressed(new RetractClimber());
+     */
   }
 
   private void configureDefaultCommands() {

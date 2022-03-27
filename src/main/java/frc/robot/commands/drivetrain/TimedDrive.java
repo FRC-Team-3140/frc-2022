@@ -5,12 +5,11 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotContainer;
 
 public class TimedDrive extends CommandBase {
-    private Timer timer = new Timer();
-    private double throttle = 0;
-    private double time = 0;
+  private Timer timer = new Timer();
+  private double throttle = 0;
+  private double time = 0;
 
-
-    public TimedDrive(double throttle, double time) {
+  public TimedDrive(double throttle, double time) {
     this.throttle = throttle;
     this.time = time;
     addRequirements(RobotContainer.dt);
@@ -18,7 +17,7 @@ public class TimedDrive extends CommandBase {
 
   @Override
   public void initialize() {
-      timer.start();
+    timer.start();
   }
 
   @Override
@@ -28,9 +27,9 @@ public class TimedDrive extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-      RobotContainer.dt.tankDrive(0, 0);
-      timer.stop();
-      timer.reset();
+    RobotContainer.dt.tankDrive(0, 0);
+    timer.stop();
+    timer.reset();
   }
 
   @Override

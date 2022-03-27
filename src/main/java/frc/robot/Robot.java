@@ -6,16 +6,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
-  public static final String dt = null;
-private Command autoCommand;
   private RobotContainer robotContainer;
-
+  private Command autoCommand;
 
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
     PortForwarder.add(1181, "wpilibpi.local", 80);
-    
   }
 
   @Override
@@ -35,9 +32,8 @@ private Command autoCommand;
   public void autonomousInit() {
     autoCommand = robotContainer.getAutonomousCommand();
 
-    if (autoCommand != null) {
+    if (autoCommand != null)
       autoCommand.schedule();
-    }
   }
 
   @Override
@@ -46,9 +42,8 @@ private Command autoCommand;
 
   @Override
   public void teleopInit() {
-    if (autoCommand != null) {
+    if (autoCommand != null)
       autoCommand.cancel();
-    }
   }
 
   @Override

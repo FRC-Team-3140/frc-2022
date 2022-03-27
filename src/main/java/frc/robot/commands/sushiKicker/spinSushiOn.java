@@ -34,4 +34,3 @@ public class spinSushiOn extends CommandBase {
     return true;
   }
 }
-

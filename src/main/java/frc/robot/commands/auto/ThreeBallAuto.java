@@ -1,11 +1,7 @@
 package frc.robot.commands.auto;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.HardwareAdapter;
-import frc.robot.Constants;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
@@ -60,7 +56,6 @@ public class ThreeBallAuto extends SequentialCommandGroup {
         new RetractFingers(),
         new spinSushiOff(),
         new FlywheelShootOff(),
-        new StopFeeder()
-   );
+        new StopFeeder());
   }
 }
