@@ -24,8 +24,8 @@ public class Vision extends SequentialCommandGroup {
         double camera_FOV = 68.5; // the angle swing of the camera from left to right
         angle = camera_FOV/2*x;
         addCommands(
-                new TurnToAngle(0.5, -angle, 20, true, .2),
-                new TurnToAngle(0.15, -angle, 0.5, false, .4)
+                new TurnToAngle(0.5, angle, 20, true, .2),
+                new TurnToAngle(0.15, angle, 0.5, false, .4)
         );
     }
   }
