@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.drivetrain.TimedTurn;
+import frc.robot.commands.drivetrain.TurnToAngle;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
@@ -31,7 +32,9 @@ public class ThreeBallAuto extends SequentialCommandGroup {
         new RetractIntake(),
         new FlywheelShoot45(),
         new WaitCommand(0.5),
-        new TimedTurn(0.25, 1.11),
+        // new TimedTurn(0.25, 1.11),
+        new TurnToAngle(0.25, 173, 20, true, 0.2),
+        new TurnToAngle(0.25, 173, 1, false, 0.2),
         new spinSushiOn(),
         new IncrementFeeder(),
         new WaitCommand(1),
@@ -46,7 +49,7 @@ public class ThreeBallAuto extends SequentialCommandGroup {
         new TimedTurn(0.25, 0.95),
         new DeployIntake(),
         new SpinIntakeIn(),
-        new TimedDrive(0.25, 1.6),
+        new TimedDrive(0.25, 2),
         new WaitCommand(1),
         new RetractIntake(),
         new TimedDrive(-0.25, 0.5),

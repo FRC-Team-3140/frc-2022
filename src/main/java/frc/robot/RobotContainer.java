@@ -95,6 +95,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
     chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
+    chooser.addOption("tesing adjustments", new TimedDrive(0.25, 2.25));
     chooser.addOption("Testing TTA", new testingTTA());
     chooser.addOption("2 Preloaded", new TaxiPreload2());
     chooser.addOption("1 Ball Auto", new OneBallAuto());
@@ -155,7 +156,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new FlywheelShoot40());
        
 
-      new JoystickButton(joystick, 5) //this number is probably going to need to change
+      new JoystickButton(joystick, 5)
       .whenPressed(new FlywheelShootOff());
 
     

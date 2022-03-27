@@ -9,9 +9,9 @@ import frc.robot.commands.drivetrain.TurnToAngle;
 public class testingTTA extends SequentialCommandGroup {
   public testingTTA() {
     addCommands(
-     new TimedDrive(0.25, 2), 
-     new WaitCommand(0.5),
-     new TurnToAngle(0.25, 90, 2)
+     new TurnToAngle(0.5, 180, 20, true, .2),
+     new WaitCommand(2),
+     new TurnToAngle(0.15, 180, 0.5, false, .4)
      );
   }
 }
