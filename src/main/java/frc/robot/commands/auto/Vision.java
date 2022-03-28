@@ -14,8 +14,8 @@ public class Vision extends SequentialCommandGroup {
     public Vision() {
         NetworkTableEntry xEntry;
         NetworkTableInstance inst = NetworkTableInstance.getDefault();
-        NetworkTable table = inst.getTable("Smartdashboard");
-        xEntry = table.getEntry("x");
+        NetworkTable table = inst.getTable("bounding box");
+        xEntry = table.getEntry("Center X Coord");
         double x_res = Constants.GeneralConstants.RobotPhysicalConstants.x_resolution;
         double x = (xEntry.getDouble(0))/x_res*2-1; 
         // x is a value from -1 to 1 where 1 is
