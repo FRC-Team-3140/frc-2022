@@ -44,7 +44,7 @@ public class SmoothDriveDistance extends CommandBase implements HardwareAdapter,
     //Note the about two 28 tooth gears have changed as of Tallahasse and need to be changed to whatever we currently have.
     this.current_position = inches_per_neo_revolution / current_neo_rotations;
 
-    double power = Math.max(Math.abs((this.dist/2 - this.current_position)/(this.dist/2))*this.throttle, this.min_throttle);
+    double power = Math.max((1-Math.abs((this.dist/2 - this.current_position)/(this.dist/2)))*this.throttle, this.min_throttle);
     //The above should follow a power trajectory that looks like this:
     //     ▲
     // P   │              /\
