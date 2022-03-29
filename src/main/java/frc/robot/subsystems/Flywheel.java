@@ -28,7 +28,9 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   // public void shootOutPole(double modifier) {
   //   flywheelMotors.set(0.7 + modifier*.3);
   // }
-  
+  public void shootPercent(int speed){
+    flywheelMotors.set(speed);
+  }
   public void shoot45() {
     flywheelMotors.set(0.45);
   }
