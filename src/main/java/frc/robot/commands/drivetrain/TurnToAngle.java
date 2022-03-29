@@ -26,12 +26,6 @@ public class TurnToAngle extends CommandBase{
     if (this.reinit==true){
       HardwareAdapter.navx.zeroYaw();
     }
-    if (this.angle>0){
-      this.turningRight=true;
-    }
-    else {
-      this.turningRight=false;
-    }
   }
   
   @Override
@@ -47,7 +41,7 @@ public class TurnToAngle extends CommandBase{
     if (this.turningRight==true){
       RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
     }
-   else {
+    else {
       RobotContainer.dt.tankDrive(throttle * power, -throttle * power);
     }
   } 
