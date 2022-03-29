@@ -14,7 +14,7 @@ private Command autoCommand;
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
-    PortForwarder.add(1181, "wpilibpi.local", 80);
+    PortForwarder.add(1181, "wpilibpi.local/", 80);
     
   }
 
