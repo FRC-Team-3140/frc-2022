@@ -98,13 +98,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
     chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
-    chooser.addOption("testing TTA", new testingTTA());
-    chooser.addOption("2 Preloaded", new TaxiPreload2());
+    // chooser.addOption("testing TTA", new testingTTA());
+    // chooser.addOption("2 Preloaded", new TaxiPreload2());
     chooser.addOption("1 Ball Auto", new OneBallAuto());
     chooser.addOption("2 Ball Auto", new TwoBallAuto());
     chooser.addOption("3 Ball Auto Main", new ThreeBallAutoMain());
-    chooser.addOption("3 Ball Auto Alt", new ThreeBallAutoAlt());
-    chooser.addOption("4 Ball Auto", new FourBallAuto());
+    // chooser.addOption("3 Ball Auto Alt", new ThreeBallAutoAlt());
+    // chooser.addOption("4 Ball Auto", new FourBallAuto());
 
 
     Shuffleboard.getTab("Selector").add(chooser);
