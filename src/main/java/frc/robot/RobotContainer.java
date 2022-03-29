@@ -54,13 +54,7 @@ import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Sushi;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
-<<<<<<< HEAD
-
-import frc.robot.HardwareAdapter;
-
-=======
 import frc.robot.Constants;
->>>>>>> 50032d6980680440b5516eda4a1cfda3037de743
 import frc.libs.*;
 
 public class RobotContainer implements Constants.ElectricalPortConstants {
