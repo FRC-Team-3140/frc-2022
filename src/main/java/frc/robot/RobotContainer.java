@@ -75,8 +75,7 @@ public class RobotContainer implements Constants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  // public static final SmoothXboxController xbox2 = new
-  // SmoothXboxController(xboxSecondaryDriver);
+  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
   public static final Joystick joystick = new Joystick(joystickDriver);
 
   private UsbCamera camera;
