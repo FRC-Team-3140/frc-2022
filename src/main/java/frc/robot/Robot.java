@@ -14,7 +14,12 @@ private Command autoCommand;
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
-    PortForwarder.add(1181, "wpilibpi.local", 80);
+    PortForwarder.add(5800, "limelight.local", 5800);
+    PortForwarder.add(5801, "limelight.local", 5801);
+    PortForwarder.add(5802, "limelight.local", 5802);
+    PortForwarder.add(5803, "limelight.local", 5803);
+    PortForwarder.add(5804, "limelight.local", 5804);
+    PortForwarder.add(5805, "limelight.local", 5805);
     
   }
 

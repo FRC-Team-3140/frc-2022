@@ -33,6 +33,7 @@ import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 // import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
+import frc.robot.commands.flywheel.FlywheelFullRoutine;
 import frc.robot.commands.flywheel.FlywheelShoot100;
 import frc.robot.commands.flywheel.FlywheelShoot75;
 import frc.robot.commands.flywheel.FlywheelShoot50;
@@ -112,7 +113,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     configureDefaultCommands();
   }
 
-  private void configureButtonBindings() {
+  private void configureButtonBindings(Command SequentialCommandGroups) {
 
     // Primary Driver Controls
 
@@ -121,6 +122,19 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new DeployIntake())
       .whenReleased(new RetractIntake());
 
+    new JoystickButton(xbox, Button.kX.value)
+      .whenPressed(new FlywheelFullRoutine(20));
+
+
+    new JoystickButton(xbox, Button.kA.value)
+      .whenPressed(new FlywheelFullRoutine(50));
+
+    new JoystickButton(xbox, Button.kB.value)
+      .whenPressed(new FlywheelFullRoutine(75));
+
+    new JoystickButton(xbox, Button.kY.value)
+      .whenPressed(new FlywheelFullRoutine(100));
+      
       // new JoystickButton(xbox, Button.kRightBumper.value)
       // .whenPressed(new SpinIntakeIn())
       // .whenPressed(new DeployIntake())
@@ -161,7 +175,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
       new JoystickButton(joystick, 5)
       .whenPressed(new FlywheelShootOff());
-
+      
     
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());
