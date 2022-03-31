@@ -10,6 +10,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 // import frc.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
@@ -59,6 +61,9 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     // Gyro
     public static final AHRS navx = new AHRS(SPI.Port.kMXP);
+
+    // Vision NetworkTable
+    public static final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     
     // Analog Inputs
     // Relays

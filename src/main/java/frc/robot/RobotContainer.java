@@ -7,6 +7,7 @@ import frc.robot.commands.auto.TaxiPreload2;
 import frc.robot.commands.auto.ThreeBallAuto;
 import frc.robot.commands.auto.OneBallAuto;
 import frc.robot.commands.drivetrain.TimedDrive;
+import frc.robot.commands.drivetrain.TurnToAngleVision;
 import frc.robot.commands.Intake.SpinIntakeIn;
 // import frc.robot.commands.drivetrain.TimedTurn;
 // import frc.robot.commands.drivetrain.MeterDrive;
@@ -16,14 +17,11 @@ import frc.robot.commands.Intake.SpinIntakeIn;
 //import frc.robot.commands.climber.ExtendClimber;
 //import frc.robot.commands.climber.RetractClimber
 
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
-// import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -54,8 +52,8 @@ import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Sushi;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
-import frc.robot.Constants;
 import frc.libs.*;
+import frc.robot.RobotContainer;
 
 public class RobotContainer implements Constants.ElectricalPortConstants {
   // The robot's subsystems and OI devices
@@ -73,7 +71,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public static final Sushi su = new Sushi();
   // public static final Hood hd = new Hood();
   // public static final Turret tr = new Turret();
-  
 
   // public static final AutoGenerator ag = new AutoGenerator();
   private static final SendableChooser<Command> chooser = new SendableChooser<>();
@@ -93,7 +90,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
     );
 
-
+  
+  
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
     chooser.addOption("TD: 2s", new TimedDrive(0.25, 2));
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
@@ -113,7 +111,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     configureDefaultCommands();
   }
 
-  private void configureButtonBindings(Command SequentialCommandGroups) {
+  private void configureButtonBindings() {
 
     // Primary Driver Controls
 
@@ -133,8 +131,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new FlywheelFullRoutine(75));
 
     new JoystickButton(xbox, Button.kY.value)
-      .whenPressed(new FlywheelFullRoutine(100));
-      
+      .whenPressed(new TurnToAngleVision(0.25, 4, 0.2));
+
+
+
+    // new JoystickButton(xbox, Button.kY.value)
+    //   .whenPressed(new FlywheelFullRoutine(100));
+
       // new JoystickButton(xbox, Button.kRightBumper.value)
       // .whenPressed(new SpinIntakeIn())
       // .whenPressed(new DeployIntake())
@@ -175,7 +178,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
       new JoystickButton(joystick, 5)
       .whenPressed(new FlywheelShootOff());
+
       
+  
     
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());
