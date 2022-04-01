@@ -21,8 +21,8 @@ public class ThreeBallAutoMain extends SequentialCommandGroup {
     addCommands(
         new DeployIntake(),
         new SpinIntakeIn(),
+        new FlywheelShootValue(0.43), // 0.45 at high school, have tried 0.455
         new TimedDrive(0.25, 2.25),
-        new FlywheelShootValue(0.5),
         new WaitCommand(0.25),
         new RetractIntake(),
         new IncrementFeeder(),
@@ -38,7 +38,7 @@ public class ThreeBallAutoMain extends SequentialCommandGroup {
         new RetractFingers(),
         new FlywheelShootOff(),
         new spinSushiOff(),
-        new FlywheelShootValue(0.4),
+        new FlywheelShootValue(0.43),
         new TurnToAngle(0.5, 60, 7, true, 0.3),
         new TurnToAngle(0.5, 60, 1, false, 0.2),
         new DeployIntake(),
@@ -46,8 +46,8 @@ public class ThreeBallAutoMain extends SequentialCommandGroup {
         new TimedDrive(0.25, 2.9),
         new WaitCommand(0.1),
         new RetractIntake(),
-        new TurnToAngle(0.5, -95, 10, true, 0.3),
-        new TurnToAngle(0.5, -95, 1, false, 0.2),
+        new TurnToAngle(0.5, -90, 10, true, 0.3), // Have tried -95
+        new TurnToAngle(0.5, -90, 1, false, 0.2), // Have tried -95
         new spinSushiOn(),
         new DeployFingers(),
         new WaitCommand(0.5),
