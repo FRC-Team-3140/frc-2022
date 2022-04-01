@@ -8,7 +8,7 @@ import frc.robot.commands.drivetrain.TurnToAngle;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShoot45;
+import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -25,10 +25,10 @@ public class TwoBallAuto extends SequentialCommandGroup {
         new TimedDrive(0.25, 2.25),
         new WaitCommand(0.25),
         new RetractIntake(),
-        new FlywheelShoot45(),
+        new FlywheelShootValue(0.45),
         new WaitCommand(0.5),
-        new TurnToAngle(0.25, 173, 20, true, 0.2),
-        new TurnToAngle(0.25, 173, 1, false, 0.2),
+        new TurnToAngle(0.5, 173, 20, true, 0.3),
+        new TurnToAngle(0.5, 173, 3, false, 0.2),
         new spinSushiOn(),
         new WaitCommand(1),
         new DeployFingers(),

@@ -29,28 +29,8 @@ public class Flywheel extends SubsystemBase implements HardwareAdapter {
   //   flywheelMotors.set(0.7 + modifier*.3);
   // }
   
-  public void shoot45() {
-    flywheelMotors.set(0.45);
-  }
-
-  public void shoot40() {
-    flywheelMotors.set(0.4);
-  }
-
-  public void shoot25() {
-    flywheelMotors.set(0.25);
-  }
-
-  public void shoot50() {
-    flywheelMotors.set(0.5);
-  }
-
-  public void shoot39() {
-    flywheelMotors.set(0.39);
-  }
-
-  public void shoot30() {
-    flywheelMotors.set(0.30);
+  public void shootValue(double speed) {
+    flywheelMotors.set(speed);
   }
 
   public void shootOff() {

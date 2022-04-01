@@ -1,20 +1,14 @@
 package frc.robot.commands.auto;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.HardwareAdapter;
-import frc.robot.Constants;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.drivetrain.TimedDrive;
-import frc.robot.commands.drivetrain.TimedTurn;
 import frc.robot.commands.drivetrain.TurnToAngle;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShoot45;
-import frc.robot.commands.flywheel.FlywheelShoot50;
+import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -31,8 +25,8 @@ public class ThreeBallAutoAlt extends SequentialCommandGroup {
         new WaitCommand(0.25),
         new IncrementFeeder(),
         new RetractIntake(),
-        new FlywheelShoot45(),
-        new TurnToAngle(0.25, 160, 10, true, 0.5),
+        new FlywheelShootValue(0.45),
+        new TurnToAngle(0.5, 160, 10, true, 0.5),
         new StopFeeder(),
         new WaitCommand(2),
         new TurnToAngle(0.25, 160, 1, false, 0.2),
@@ -61,7 +55,7 @@ public class ThreeBallAutoAlt extends SequentialCommandGroup {
         new TurnToAngle(0.25, 160, 10, true, 0.5),
         new WaitCommand(2),
         new TurnToAngle(0.25, 160, 1, false, 0.2),
-        new FlywheelShoot50(),
+        new FlywheelShootValue(0.5),
         new IncrementFeeder(),
         new spinSushiOn(),
         new WaitCommand(0.1),

@@ -1,14 +1,12 @@
 package frc.robot.commands.auto;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.drivetrain.TimedDrive;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShoot45;
+import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.sushiKicker.spinSushiOff;
@@ -17,7 +15,7 @@ import frc.robot.commands.sushiKicker.spinSushiOn;
 public class OneBallAuto extends SequentialCommandGroup {
   public OneBallAuto() {
     addCommands(
-     new FlywheelShoot45(),
+     new FlywheelShootValue(0.45),
      new TimedDrive(-0.25, 2), 
      new WaitCommand(1),
      new IncrementFeeder(),

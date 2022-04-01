@@ -8,8 +8,7 @@ import frc.robot.commands.drivetrain.TurnToAngle;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShoot45;
-import frc.robot.commands.flywheel.FlywheelShoot50;
+import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -26,7 +25,7 @@ public class FourBallAuto extends SequentialCommandGroup {
         new WaitCommand(0.25),
         new IncrementFeeder(),
         new RetractIntake(),
-        new FlywheelShoot45(),
+        new FlywheelShootValue(0.45),
         new TurnToAngle(0.25, 173, 20, true, 0.8),
         new StopFeeder(),
         new WaitCommand(2),
@@ -56,7 +55,7 @@ public class FourBallAuto extends SequentialCommandGroup {
         new TurnToAngle(0.25, 160, 10, true, 0.5),
         new WaitCommand(2),
         new TurnToAngle(0.25, 160, 1, false, 0.2),
-        new FlywheelShoot50(),
+        new FlywheelShootValue(0.5),
         new IncrementFeeder(),
         new spinSushiOn(),
         new WaitCommand(0.1),

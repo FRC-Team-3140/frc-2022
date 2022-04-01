@@ -1,18 +1,20 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 import frc.robot.commands.auto.DoNothingAuto;
-import frc.robot.commands.auto.FourBallAuto;
+// import frc.robot.commands.auto.FourBallAuto;
 import frc.robot.commands.auto.TwoBallAuto;
-import frc.robot.commands.auto.testingTTA;
-import frc.robot.commands.auto.TaxiPreload2;
-import frc.robot.commands.auto.ThreeBallAutoAlt;
+// import frc.robot.commands.auto.testingTTA;
+// import frc.robot.commands.auto.TaxiPreload2;
+// import frc.robot.commands.auto.ThreeBallAutoAlt;
 import frc.robot.commands.auto.ThreeBallAutoMain;
 import frc.robot.commands.auto.OneBallAuto;
 import frc.robot.commands.drivetrain.TimedDrive;
-import frc.robot.commands.drivetrain.TurnToAngle;
-import frc.robot.commands.Intake.SpinIntakeIn;
-// import frc.robot.commands.drivetrain.TimedTurn;
-// import frc.robot.commands.drivetrain.MeterDrive;
+// import frc.robot.commands.drivetrain.TurnToAngle;
 
 
 //import frc.robot.commands.climber.ClimberOff;
@@ -21,25 +23,19 @@ import frc.robot.commands.Intake.SpinIntakeIn;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.UsbCamera;
+// import edu.wpi.first.cameraserver.CameraServer;
+// import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Joystick;
-// import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
+import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.feeder.StopFeeder;
-// import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
-import frc.robot.commands.flywheel.FlywheelShoot30;
-import frc.robot.commands.flywheel.FlywheelShoot35;
-import frc.robot.commands.flywheel.FlywheelShoot50;
-import frc.robot.commands.flywheel.FlywheelShoot45;
-import frc.robot.commands.flywheel.FlywheelShoot40;
-import frc.robot.commands.flywheel.FlywheelShoot25;
+import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -54,7 +50,6 @@ import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Sushi;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
-import frc.robot.Constants;
 import frc.libs.*;
 
 public class RobotContainer implements Constants.ElectricalPortConstants {
@@ -71,8 +66,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public static final Flywheel fw = new Flywheel();
   public static final Feeder fd = new Feeder();
   public static final Sushi su = new Sushi();
-  // public static final Hood hd = new Hood();
-  // public static final Turret tr = new Turret();
   
 
   // public static final AutoGenerator ag = new AutoGenerator();
@@ -80,18 +73,33 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
   // Xbox controllers
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
-  // public static final SmoothXboxController xbox2 = new SmoothXboxController(xboxSecondaryDriver);
   public static final Joystick joystick = new Joystick(joystickDriver);
 
-  private UsbCamera camera;
+  // private UsbCamera camera;
 
   public RobotContainer() {
-    camera = CameraServer.startAutomaticCapture();
-    camera.setFPS(30);
-    camera.setResolution(
-      Constants.GeneralConstants.RobotPhysicalConstants.x_resolution, 
-      Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
-    );
+    // camera = CameraServer.startAutomaticCapture();
+    // camera.setFPS(30);
+    // camera.setResolution(
+    //   Constants.GeneralConstants.RobotPhysicalConstants.x_resolution, 
+    //   Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
+    // );
+    
+
+      NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+      NetworkTableEntry tx = table.getEntry("tx");
+      NetworkTableEntry ty = table.getEntry("ty");
+      NetworkTableEntry ta = table.getEntry("ta");
+      
+      //read values periodically
+      double x = tx.getDouble(0.0);
+      double y = ty.getDouble(0.0);
+      double area = ta.getDouble(0.0);
+      
+      //post to smart dashboard periodically
+      SmartDashboard.putNumber("LimelightX", x);
+      SmartDashboard.putNumber("LimelightY", y);
+      SmartDashboard.putNumber("LimelightArea", area);  
 
 
     chooser.setDefaultOption("Do Nothing Auto", new DoNothingAuto());
@@ -99,11 +107,11 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     chooser.addOption("TD: 5s", new TimedDrive(0.25, 5));
     chooser.addOption("RTD: 2s", new TimedDrive(-0.25, 2));
     chooser.addOption("RTD: 5s", new TimedDrive(-0.25, 5));
-    // chooser.addOption("testing TTA", new testingTTA());
-    // chooser.addOption("2 Preloaded", new TaxiPreload2());
     chooser.addOption("1 Ball Auto", new OneBallAuto());
     chooser.addOption("2 Ball Auto", new TwoBallAuto());
     chooser.addOption("3 Ball Auto Main", new ThreeBallAutoMain());
+    // chooser.addOption("testing TTA", new testingTTA());
+    // chooser.addOption("2 Preloaded", new TaxiPreload2());
     // chooser.addOption("3 Ball Auto Alt", new ThreeBallAutoAlt());
     // chooser.addOption("4 Ball Auto", new FourBallAuto());
 
@@ -142,16 +150,16 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       .whenPressed(new FlywheelShootOff());
 
       new JoystickButton(joystick, 6)
-      .whenPressed(new FlywheelShoot25());
+      .whenPressed(new FlywheelShootValue(0.25));
       
       new JoystickButton(joystick, 7)
-      .whenPressed(new FlywheelShoot30());
+      .whenPressed(new FlywheelShootValue(0.3));
       
       new JoystickButton(joystick, 8)
-      .whenPressed(new FlywheelShoot45());
+      .whenPressed(new FlywheelShootValue(0.45));
       
       new JoystickButton(joystick, 9)
-      .whenPressed(new FlywheelShoot50());  
+      .whenPressed(new FlywheelShootValue(0.5));
 
       // new JoystickButton(joystick, 7)
       // .whenPressed(new FlywheelShoot35());
@@ -175,7 +183,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   }
 
   private void configureDefaultCommands() {
-    // fd.setDefaultCommand(new IncrementFeeder(false));
     dt.setDefaultCommand(new Drive());
   }
 
