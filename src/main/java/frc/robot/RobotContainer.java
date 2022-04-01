@@ -32,7 +32,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
-import frc.robot.commands.RobotSelfTest;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
@@ -41,9 +40,9 @@ import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
 import frc.robot.commands.pneumatics.Intake.RetractIntake;
+import frc.robot.commands.selfTest.RobotSelfTest;
 import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
-
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Feeder;
