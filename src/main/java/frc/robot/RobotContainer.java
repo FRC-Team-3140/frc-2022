@@ -32,6 +32,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
+import frc.robot.commands.RobotSelfTest;
 import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
@@ -117,6 +118,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
 
     Shuffleboard.getTab("Selector").add(chooser);
+    
+    // Robot Self Test
+    SmartDashboard.putData("Robot Self Test", new RobotSelfTest());
 
     configureButtonBindings();
     configureDefaultCommands();
