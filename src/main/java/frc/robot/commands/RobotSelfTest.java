@@ -90,7 +90,7 @@ public class RobotSelfTest extends SequentialCommandGroup {
 			// Turn To Angle
 			new TurnToAngle(0.5, 45, 20, true, 0.3),
 			new WaitCommand(1),
-			new TurnToAngle(0.5, 45, 20, true, 0.3),
+			new TurnToAngle(0.5, -45, 20, true, 0.3),
 			new WaitCommand(1),
 			new TurnToAngle(0.5, 90, 20, true, 0.3),
 			new WaitCommand(1),
