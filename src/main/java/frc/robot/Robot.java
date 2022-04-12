@@ -2,20 +2,30 @@ package frc.robot;
 
 import edu.wpi.first.util.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
   public static final String dt = null;
-private Command autoCommand;
+private Command autoCommand;  
   private RobotContainer robotContainer;
-
-
+  private AddressableLED m_led;
+  // private AddressableLED f_led;
+  // private AddressableLEDBuffer f_ledBuffer;
+  private AddressableLEDBuffer m_ledBuffer;
+  private int m_rainbowFirstPixelHue = 0;
+ 
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
     PortForwarder.add(1181, "wpilibpi.local/", 80);
-    
+    m_led = new AddressableLED(1);
+    m_ledBuffer = new AddressableLEDBuffer(22);
+    m_led.setLength(m_ledBuffer.getLength());
+    m_led.setData(m_ledBuffer);
+    m_led.start();
   }
 
   @Override
@@ -53,6 +63,41 @@ private Command autoCommand;
 
   @Override
   public void teleopPeriodic() {
+    rainbow();
+    m_led.setData(m_ledBuffer);
+    // red();
+  }
+
+  private void red() {
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+      // Sets the specified LED to the RGB values for red
+      m_ledBuffer.setRGB(i, 255, 0, 0);
+   }      
+  }
+
+  private void rainbow() {
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+      int hue;
+      if (i<55){
+        hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180; 
+        m_ledBuffer.setHSV(i, hue, 255, 128);
+      }
+      else
+      {
+        hue=0;
+       if ((m_rainbowFirstPixelHue%20)<10)
+       {
+        m_ledBuffer.setHSV(i, hue, 255, 0);
+       }
+        else
+        {
+        m_ledBuffer.setHSV(i, hue, 255, 128);
+        }
+
+      }
+    }
+    m_rainbowFirstPixelHue += 3;
+    m_rainbowFirstPixelHue %= 180;
   }
 
   @Override

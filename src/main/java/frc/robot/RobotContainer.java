@@ -23,8 +23,8 @@ import frc.robot.commands.drivetrain.TimedDrive;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-// import edu.wpi.first.cameraserver.CameraServer;
-// import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -75,15 +75,15 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   public static final SmoothXboxController xbox = new SmoothXboxController(xboxPrimaryDriver);
   public static final Joystick joystick = new Joystick(joystickDriver);
 
-  // private UsbCamera camera;
+  private UsbCamera camera;
 
   public RobotContainer() {
-    // camera = CameraServer.startAutomaticCapture();
-    // camera.setFPS(30);
-    // camera.setResolution(
-    //   Constants.GeneralConstants.RobotPhysicalConstants.x_resolution, 
-    //   Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
-    // );
+    camera = CameraServer.startAutomaticCapture();
+    camera.setFPS(30);
+    camera.setResolution(
+      Constants.GeneralConstants.RobotPhysicalConstants.x_resolution, 
+      Constants.GeneralConstants.RobotPhysicalConstants.y_resolution
+    );
     
 
       NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -149,6 +149,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       new JoystickButton(joystick, 5)
       .whenPressed(new FlywheelShootOff());
 
+      // new JoystickButton(joystick, 6)
+      // .whenPressed(new FlywheelShootValue(0.25));
+
       new JoystickButton(joystick, 6)
       .whenPressed(new FlywheelShootValue(0.25));
       
@@ -160,18 +163,6 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       
       new JoystickButton(joystick, 9)
       .whenPressed(new FlywheelShootValue(0.5));
-
-      // new JoystickButton(joystick, 7)
-      // .whenPressed(new FlywheelShoot35());
-      
-      // new JoystickButton(joystick, 11)
-      // .whenPressed(new FlywheelShoot40());
-      
-      // new JoystickButton(joystick, 12)
-      // .whenPressed(new FlywheelShoot45());
-       
-
-
 
     
     /* Climber
