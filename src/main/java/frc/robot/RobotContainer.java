@@ -40,9 +40,9 @@ import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
 import frc.robot.commands.pneumatics.Intake.RetractIntake;
+import frc.robot.commands.selfTest.RobotSelfTest;
 import frc.robot.commands.sushiKicker.spinSushiOff;
 import frc.robot.commands.sushiKicker.spinSushiOn;
-
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Feeder;
@@ -117,6 +117,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
 
     Shuffleboard.getTab("Selector").add(chooser);
+    
+    // Robot Self Test
+    SmartDashboard.putData("Robot Self Test", new RobotSelfTest());
 
     configureButtonBindings();
     configureDefaultCommands();
@@ -153,16 +156,19 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       // .whenPressed(new FlywheelShootValue(0.25));
 
       new JoystickButton(joystick, 6)
-      .whenPressed(new FlywheelShootValue(0.25));
+      .whenPressed(new FlywheelShootValue(0.25)); // Tarmac, low, good
       
       new JoystickButton(joystick, 7)
-      .whenPressed(new FlywheelShootValue(0.3));
+      .whenPressed(new FlywheelShootValue(0.3)); // Field Side, low, good
       
       new JoystickButton(joystick, 8)
-      .whenPressed(new FlywheelShootValue(0.45));
+      .whenPressed(new FlywheelShootValue(0.455)); // Launch Pad Close, High, goodish, hits center, long adjust to 46 was 45
+
+      new JoystickButton(joystick, 10)
+      .whenPressed(new FlywheelShootValue(0.44)); // Launch Pad Close, High, untested, short adjust, was not used or 45
       
       new JoystickButton(joystick, 9)
-      .whenPressed(new FlywheelShootValue(0.5));
+      .whenPressed(new FlywheelShootValue(0.5)); // Launch Pad Far, High, no comment on accuracy
 
     
     /* Climber

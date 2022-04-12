@@ -25,7 +25,7 @@ public class TwoBallAuto extends SequentialCommandGroup {
         new TimedDrive(0.25, 2.25),
         new WaitCommand(0.25),
         new RetractIntake(),
-        new FlywheelShootValue(0.45),
+        new FlywheelShootValue(0.43), // Was 0.45 on Thursday, hit dead center
         new WaitCommand(0.5),
         new TurnToAngle(0.5, 173, 20, true, 0.3),
         new TurnToAngle(0.5, 173, 3, false, 0.2),
