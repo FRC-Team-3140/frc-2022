@@ -15,7 +15,8 @@ import frc.robot.commands.auto.ThreeBallAutoMain;
 import frc.robot.commands.auto.OneBallAuto;
 import frc.robot.commands.drivetrain.TimedDrive;
 // import frc.robot.commands.drivetrain.TurnToAngle;
-
+import frc.robot.commands.drivetrain.TimedTurn;
+import frc.robot.commands.drivetrain.TurnToAngle;
 
 //import frc.robot.commands.climber.ClimberOff;
 //import frc.robot.commands.climber.ExtendClimber;
@@ -29,7 +30,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.commands.drivetrain.AngleTurn;
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
 import frc.robot.commands.Intake.SpinIntakeIn;
@@ -167,9 +168,11 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       new JoystickButton(joystick, 10)
       .whenPressed(new FlywheelShootValue(0.44)); // Launch Pad Close, High, untested, short adjust, was not used or 45
       
-      new JoystickButton(joystick, 9)
-      .whenPressed(new FlywheelShootValue(0.5)); // Launch Pad Far, High, no comment on accuracy
+      //new JoystickButton(joystick, 9)
+      //.whenPressed(new FlywheelShootValue(0.5)); // Launch Pad Far, High, no comment on accuracy
 
+      new JoystickButton(joystick, 9)
+      .whenPressed(new AngleTurn(.1, 4, .05));
     
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());

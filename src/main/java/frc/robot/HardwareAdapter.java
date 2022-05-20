@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     // Other CAN
@@ -64,4 +66,6 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     // Relays
     // Limit Switches
     // Cameras
+    public static final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+
 }
