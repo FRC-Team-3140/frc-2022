@@ -17,7 +17,7 @@ public interface Constants {
 		// Pnuematics
 		public final static Value EXT = Value.kForward;
 		public final static Value RET = Value.kReverse;
-		public final static Value OFF = Value.kOff;
+		public final static Value OFF = Value.kOff;  
 		// OI
 		public final static double DEADBAND = 0.2;
 

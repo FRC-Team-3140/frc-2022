@@ -37,6 +37,7 @@ import frc.robot.commands.Intake.SpinIntakeIn;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootValue;
+import frc.robot.commands.flywheel.flywheelAuto;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -139,7 +140,13 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       // .whenPressed(new SpinIntakeIn())
       // .whenPressed(new DeployIntake())
       // .whenReleased(new RetractIntake());
- 
+
+    new JoystickButton(xbox, Button.kB.value)
+    .whenPressed(new AngleTurn(.1, 3, .5));
+
+    new JoystickButton(xbox, Button.kA.value)
+    .whenPressed(new flywheelAuto());
+    
       new JoystickButton(joystick, 1)
       .whenPressed(new DeployFingers())
       .whenReleased(new RetractFingers());
@@ -157,29 +164,30 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       // .whenPressed(new FlywheelShootValue(0.25));
 
       new JoystickButton(joystick, 6)
-      .whenPressed(new FlywheelShootValue(0.25)); // Tarmac, low, good
+      .whenPressed(new FlywheelShootValue(0.25)); // Tarmac, low, good 69
       
       new JoystickButton(joystick, 7)
-      .whenPressed(new FlywheelShootValue(0.3)); // Field Side, low, good
+      .whenPressed(new FlywheelShootValue(0.3)); // Field Side, low, good, 122
       
       new JoystickButton(joystick, 8)
-      .whenPressed(new FlywheelShootValue(0.455)); // Launch Pad Close, High, goodish, hits center, long adjust to 46 was 45
+      .whenPressed(new FlywheelShootValue(0.455)); // Launch Pad Close, High, goodish, hits center, long adjust to 46 was 45, 168
 
       new JoystickButton(joystick, 10)
-      .whenPressed(new FlywheelShootValue(0.44)); // Launch Pad Close, High, untested, short adjust, was not used or 45
+      .whenPressed(new FlywheelShootValue(0.44)); // Launch Pad Close, High, untested, short adjust, was not used or 45, 168
       
-      //new JoystickButton(joystick, 9)
-      //.whenPressed(new FlywheelShootValue(0.5)); // Launch Pad Far, High, no comment on accuracy
-
       new JoystickButton(joystick, 9)
-      .whenPressed(new AngleTurn(.1, 4, .05));
-    
+      .whenPressed(new FlywheelShootValue(0.5)); // Launch Pad Far, High, no comment on accuracy, 203
+
+      new JoystickButton(joystick, 11)
+      .whenPressed(new FlywheelShootValue(.275)); // 95 inches away 98 20 degrees 39.5 inches off the ground 68.5 inches from limelight to goal
+
     /* Climber
     xbox2.dpadUp.whenPressed(new ExtendClimber());
     xbox2.dpadUp.whenReleased(new ClimberOff());
     xbox2.dpadDown.whenReleased(new ClimberOff());
     xbox2.dpadDown.whenPressed(new RetractClimber());
     */
+    //69- tarmac shot, 122 inches- To the flagship logo shot , launchpad shot close- 168 inches, 
   }
 
   private void configureDefaultCommands() {

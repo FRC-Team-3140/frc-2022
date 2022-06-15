@@ -28,6 +28,7 @@ public class AngleTurn extends CommandBase implements HardwareAdapter {
   public void execute() {
     currentAngle = HardwareAdapter.navx.getYaw();
     double power = Math.max(Math.abs((angle - currentAngle) / angle), minSpeed);
+    
 
     if (currentAngle > angle)
       RobotContainer.dt.tankDrive(-throttle * power, throttle * power);
@@ -43,6 +44,6 @@ public class AngleTurn extends CommandBase implements HardwareAdapter {
   @Override
   public boolean isFinished() {
     return Math.abs(angle - currentAngle) <= tolerance;
-    
+
   }
 } 

@@ -1,6 +1,8 @@
 package frc.robot;
-
-import edu.wpi.first.util.net.PortForwarder;
+import frc.robot.HardwareAdapter;
+import frc.robot.commands.flywheel.flywheelAuto;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
@@ -16,21 +18,22 @@ private Command autoCommand;
   // private AddressableLEDBuffer f_ledBuffer;
   private AddressableLEDBuffer m_ledBuffer;
   private int m_rainbowFirstPixelHue = 0;
- 
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
-    PortForwarder.add(1181, "wpilibpi.local/", 80);
     m_led = new AddressableLED(1);
     m_ledBuffer = new AddressableLEDBuffer(22);
     m_led.setLength(m_ledBuffer.getLength());
     m_led.setData(m_ledBuffer);
     m_led.start();
+    
+
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+
   }
 
   @Override
@@ -44,7 +47,6 @@ private Command autoCommand;
   @Override
   public void autonomousInit() {
     autoCommand = robotContainer.getAutonomousCommand();
-
     if (autoCommand != null) {
       autoCommand.schedule();
     }
@@ -66,6 +68,7 @@ private Command autoCommand;
     rainbow();
     m_led.setData(m_ledBuffer);
     // red();
+    
   }
 
   private void red() {
