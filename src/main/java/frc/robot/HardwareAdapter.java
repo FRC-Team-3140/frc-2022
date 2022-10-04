@@ -49,7 +49,7 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
     public final CANSparkMax sushiMotor = new CANSparkMax(11, MotorType.kBrushless);
 
     // Pnuematics
-    public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
+   // public static final Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
     public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(1,PneumaticsModuleType.CTREPCM, 3, 2);
     public static final DoubleSolenoid climberLockSolenoid = new DoubleSolenoid(1,PneumaticsModuleType.CTREPCM, 4, 5);
     public static final DoubleSolenoid climberSolenoid = new DoubleSolenoid(1,PneumaticsModuleType.CTREPCM, 6, 7);

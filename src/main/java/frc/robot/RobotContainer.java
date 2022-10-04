@@ -24,9 +24,9 @@ import frc.robot.commands.drivetrain.TurnToAngle;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -116,7 +116,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
     // chooser.addOption("2 Preloaded", new TaxiPreload2());
     // chooser.addOption("3 Ball Auto Alt", new ThreeBallAutoAlt());
     // chooser.addOption("4 Ball Auto", new FourBallAuto());
-
+   //chooser.setDefaultOption("Limelight off", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1));
 
     Shuffleboard.getTab("Selector").add(chooser);
     
@@ -160,8 +160,8 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       new JoystickButton(joystick, 5)
       .whenPressed(new FlywheelShootOff());
 
-      // new JoystickButton(joystick, 6)
-      // .whenPressed(new FlywheelShootValue(0.25));
+      new JoystickButton(joystick, 3)
+      .whenPressed(new flywheelAuto());
 
       new JoystickButton(joystick, 6)
       .whenPressed(new FlywheelShootValue(0.25)); // Tarmac, low, good 69

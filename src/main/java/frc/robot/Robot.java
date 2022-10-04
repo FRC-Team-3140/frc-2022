@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
-  public static final String dt = null;
-private Command autoCommand;  
+  private Command autoCommand;  
   private RobotContainer robotContainer;
   private AddressableLED m_led;
   // private AddressableLED f_led;
@@ -61,6 +60,7 @@ private Command autoCommand;
     if (autoCommand != null) {
       autoCommand.cancel();
     }
+    
   }
 
   @Override
