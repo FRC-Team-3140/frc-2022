@@ -30,6 +30,8 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drivetrain.AngleTurn;
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.feeder.IncrementFeeder;
@@ -38,6 +40,7 @@ import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.commands.flywheel.FlywheelShootOff;
 import frc.robot.commands.flywheel.FlywheelShootValue;
 import frc.robot.commands.flywheel.flywheelAuto;
+import frc.robot.commands.flywheel.flywheelFullRoutine;
 import frc.robot.commands.pneumatics.Fingers.DeployFingers;
 import frc.robot.commands.pneumatics.Fingers.RetractFingers;
 import frc.robot.commands.pneumatics.Intake.DeployIntake;
@@ -92,12 +95,12 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
       NetworkTableEntry tx = table.getEntry("tx");
       NetworkTableEntry ty = table.getEntry("ty");
       NetworkTableEntry ta = table.getEntry("ta");
-      
       //read values periodically
       double x = tx.getDouble(0.0);
       double y = ty.getDouble(0.0);
       double area = ta.getDouble(0.0);
-      
+     // NetworkTableInstance.getDefault().getTable("Distance").getEntry("Distance").setDouble(68.5/(Math.tan((27 + y) * Math.PI/180)));
+      SmartDashboard.putNumber("Distance", 68.5/(Math.tan((27 + y) * Math.PI/180)));
       //post to smart dashboard periodically
       SmartDashboard.putNumber("LimelightX", x);
       SmartDashboard.putNumber("LimelightY", y);
@@ -143,6 +146,11 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
 
     new JoystickButton(xbox, Button.kB.value)
     .whenPressed(new AngleTurn(.1, 3, .5));
+
+    new JoystickButton(joystick, 4)
+    .whenPressed(new SequentialCommandGroup (
+    new ParallelDeadlineGroup( new flywheelAuto(), new IncrementFeeder()),
+    new DeployFingers(), new RetractFingers()));
 
     new JoystickButton(xbox, Button.kA.value)
     .whenPressed(new flywheelAuto());

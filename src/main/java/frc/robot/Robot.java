@@ -4,6 +4,7 @@ import frc.robot.commands.flywheel.flywheelAuto;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -67,6 +68,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     rainbow();
     m_led.setData(m_ledBuffer);
+    SmartDashboard.putNumber("Distance", 68.5/(Math.tan((27 + NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.00)) * Math.PI/180)) + 12);
     // red();
     
   }

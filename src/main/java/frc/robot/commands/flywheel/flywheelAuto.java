@@ -22,7 +22,7 @@ public class flywheelAuto extends CommandBase implements HardwareAdapter {
          if(length < 122){
             RobotContainer.fw.shootValue(0.00094*length+ 0.2);
          }else{
-           RobotContainer.fw.shootValue(0.00128571*length + .239);
+           RobotContainer.fw.shootValue(0.00128571*length + .25);
          }
     }
   
